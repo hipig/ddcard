@@ -33,7 +33,7 @@
   <!-- END Sidebar Header -->
 
   <!-- Sidebar Navigation -->
-  <div class="overflow-y-auto">
+  <div class="sidebar-scroll-section" data-simplebar>
     <div class="p-4 w-full">
       <ul class="text-gray-300 space-y-1">
         <li>
@@ -156,6 +156,66 @@
                 <span class="flex-grow">菜单2</span>
               </a>
             </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单2</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单2</span>
+              </a>
+            </li><li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单2</span>
+              </a>
+            </li><li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单2</span>
+              </a>
+            </li><li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单2</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单1</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
+                <span class="flex-grow">菜单2</span>
+              </a>
+            </li>
+
+
+
           </ul>
         </li>
         <li>

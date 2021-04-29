@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import '~simplebar/dist/simplebar.css';
+.sidebar-scroll-section {
+  height: calc(100vh - 4rem);
+}
+.simplebar-scrollbar:before {
+  background-color: #fff;
+  opacity: .5;
+  left: 4px;
+}
