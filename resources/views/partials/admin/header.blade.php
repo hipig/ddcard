@@ -143,7 +143,7 @@
           x-bind:aria-expanded="userDropdownOpen"
           x-on:click="userDropdownOpen = true"
         >
-          <span>Admin</span>
+          <span>{{ Auth::user()->name }}</span>
           <x-heroicon-s-chevron-down class="w-5 h-5 opacity-50"></x-heroicon-s-chevron-down>
         </button>
         <!-- END Dropdown Toggle Button -->
@@ -173,7 +173,8 @@
               </a>
             </div>
             <div class="p-2 space-y-1">
-              <form onsubmit="return false;">
+              <form action="{{ route('admin.logout') }}" method="post">
+                @csrf
                 <button type="submit" role="menuitem" class="w-full text-left flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                   <x-heroicon-s-lock-closed class="w-5 h-5 opacity-50"></x-heroicon-s-lock-closed>
                   <span>退出登录</span>
