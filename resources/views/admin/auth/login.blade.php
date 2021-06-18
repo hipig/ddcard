@@ -37,7 +37,7 @@
                 name="username"
                 value="{{ old('username') }}"
                 class="block border rounded px-5 py-3 leading-6 w-full focus:ring focus:ring-opacity-50 {{ $errors->has('username') ? 'text-red-700 border-red-400 focus:border-red-500 focus:ring-red-500' : 'border-gray-200 focus:border-indigo-500 focus:ring-indigo-500' }}"
-                placeholder="请输入用户名/邮箱地址"
+                placeholder="请输入用户名"
               />
               @error('username')
                 <p class="text-sm text-red-600">{{ $message }}</p>

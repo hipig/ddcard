@@ -34,200 +34,22 @@
 
   <!-- Sidebar Navigation -->
   <div class="sidebar-scroll-section" data-simplebar>
-    <div class="p-4 w-full">
-      <ul class="text-gray-300 space-y-1">
-        <li>
-          <a href="#" class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100 bg-gray-800 bg-opacity-75 text-white rounded-b">
-            <span class="flex-none flex items-center opacity-50">
-              <x-heroicon-o-home class="w-5 h-5"></x-heroicon-o-home>
-            </span>
-            <span class="flex-grow">仪表盘</span>
-          </a>
-        </li>
-        <li>
-          <div class="px-3 pt-5 pb-2 text-xs font-medium uppercase tracking-wider text-gray-400">系统</div>
-        </li>
-        <li>
-          <a href="#" class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100 rounded-b">
-            <span class="flex-none flex items-center opacity-50">
-              <x-heroicon-o-cog class="w-5 h-5"></x-heroicon-o-cog>
-            </span>
-            <span class="flex-grow">系统设置</span>
-          </a>
-        </li>
-        <li x-data="{menuItemOpen: false}">
-          <a
-            href="#"
-            class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100"
-            x-bind:class="{
-                'bg-gray-800 bg-opacity-75 text-white': menuItemOpen,
-                'rounded-b': !menuItemOpen
-              }"
-            x-on:click="menuItemOpen = !menuItemOpen"
-          >
-            <span class="flex-none flex items-center opacity-50">
-              <x-heroicon-o-shield-check class="w-5 h-5"></x-heroicon-o-shield-check>
-            </span>
-            <span class="flex-grow">权限管理</span>
-            <span
-              class="transform transition ease-out duration-150 opacity-75 rotate-0"
-              x-bind:class="{
-                  'rotate-90': !menuItemOpen,
-                  'rotate-0': menuItemOpen
-                }"
-            >
-              <x-heroicon-s-chevron-down class="w-5 h-5"></x-heroicon-s-chevron-down>
-            </span>
-          </a>
-          <ul
-            x-show="menuItemOpen"
-            x-transition:enter="transition ease-out duration-100"
-            x-transition:enter-start="transform -translate-y-6 opacity-0"
-            x-transition:enter-end="transform translate-y-0 opacity-100"
-            x-transition:leave="transition ease-in duration-100 bg-transparent"
-            x-transition:leave-start="transform translate-y-0 opacity-100"
-            x-transition:leave-end="transform -translate-y-6 opacity-0"
-            class="p-2 text-gray-400 bg-gray-800 bg-opacity-50 text-sm rounded-b"
-          >
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">角色</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">权限节点</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100 rounded-b">
-            <span class="flex-none flex items-center opacity-50">
-              <x-heroicon-o-user class="w-5 h-5"></x-heroicon-o-user>
-            </span>
-            <span class="flex-grow">用户</span>
-          </a>
-        </li>
-        <li>
-          <div class="px-3 pt-5 pb-2 text-xs font-medium uppercase tracking-wider text-gray-400">测试</div>
-        </li>
-        <li x-data="{menuItemOpen: false}">
-          <a
-            href="#"
-            class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100"
-            x-bind:class="{
-                'bg-gray-800 bg-opacity-75 text-white': menuItemOpen,
-                'rounded-b': !menuItemOpen
-              }"
-            x-on:click="menuItemOpen = !menuItemOpen"
-          >
-            <span class="flex-none flex items-center opacity-50">
-              <x-heroicon-o-menu class="w-5 h-5"></x-heroicon-o-menu>
-            </span>
-            <span class="flex-grow">测试菜单1</span>
-            <span
-              class="transform transition ease-out duration-150 opacity-75 rotate-0"
-              x-bind:class="{
-                  'rotate-90': !menuItemOpen,
-                  'rotate-0': menuItemOpen
-                }"
-            >
-              <x-heroicon-s-chevron-down class="w-5 h-5"></x-heroicon-s-chevron-down>
-            </span>
-          </a>
-          <ul
-            x-show="menuItemOpen"
-            x-transition:enter="transition ease-out duration-100"
-            x-transition:enter-start="transform -translate-y-6 opacity-0"
-            x-transition:enter-end="transform translate-y-0 opacity-100"
-            x-transition:leave="transition ease-in duration-100 bg-transparent"
-            x-transition:leave-start="transform translate-y-0 opacity-100"
-            x-transition:leave-end="transform -translate-y-6 opacity-0"
-            class="p-2 text-gray-400 bg-gray-800 bg-opacity-50 text-sm rounded-b"
-          >
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li><li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li><li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li><li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单1</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center px-3 py-2 transition ease-out duration-100 hover:text-white">
-                <span class="flex-grow">菜单2</span>
-              </a>
-            </li>
-
-
-
-          </ul>
-        </li>
-        <li>
-          <a href="#" class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100 rounded-b">
-            <span class="flex-none flex items-center opacity-50">
-              <x-heroicon-o-menu class="w-5 h-5"></x-heroicon-o-menu>
-            </span>
-            <span class="flex-grow">测试菜单2</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <x-sidebar.menu>
+      <x-sidebar.item label="仪表盘" icon="heroicon-o-home" href="{{ route('admin.dashboard') }}"></x-sidebar.item>
+      <x-sidebar.group label="系统">
+        <x-sidebar.item label="系统设置" icon="heroicon-o-cog"></x-sidebar.item>
+        <x-sidebar.item label="权限管理" icon="heroicon-o-shield-check">
+          <x-sidebar.subitem label="管理员"></x-sidebar.subitem>
+          <x-sidebar.subitem label="角色"></x-sidebar.subitem>
+        </x-sidebar.item>
+      </x-sidebar.group>
+      <x-sidebar.group label="应用">
+        <x-sidebar.item label="用户" icon="heroicon-o-user"></x-sidebar.item>
+        <x-sidebar.item label="卡片分组" icon="heroicon-o-folder-open"></x-sidebar.item>
+        <x-sidebar.item label="卡片" icon="heroicon-o-clipboard-list"></x-sidebar.item>
+        <x-sidebar.item label="统计报告" icon="heroicon-o-chart-square-bar"></x-sidebar.item>
+      </x-sidebar.group>
+    </x-sidebar.menu>
   </div>
   <!-- END Sidebar Navigation -->
 </nav>

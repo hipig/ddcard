@@ -40,6 +40,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            \App\Http\Middleware\AcceptHeader::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -63,7 +64,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        'admin.default' => \App\Http\Middleware\DefaultToAdmin::class,
+        'guard' => \App\Http\Middleware\DefaultGuard::class,
         'admin.auth' => \App\Http\Middleware\AdminAuthenticate::class,
         'admin.guest' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
     ];

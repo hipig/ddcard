@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -45,12 +44,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $credentials = [
-            $this->username() => $this->username,
-            'password' => $this->password,
-        ];
-
-        if (! Auth::attempt($credentials, $this->filled('remember'))) {
+        if (! Auth::attempt($this->only('username', 'password'), $this->filled('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -79,7 +73,7 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'username' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
@@ -94,10 +88,5 @@ class LoginRequest extends FormRequest
     public function throttleKey()
     {
         return Str::lower($this->input('username')).'|'.$this->ip();
-    }
-
-    public function username()
-    {
-        return filter_var($this->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
     }
 }

@@ -11,7 +11,10 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "overtrue/laravel-lang": "~5.0",
+        "overtrue/laravel-wechat": "^6.0",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
