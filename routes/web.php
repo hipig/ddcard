@@ -39,6 +39,8 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
 
         Route::get('/', [Admin\HomeController::class, 'dashboard'])->name('dashboard');
 
+        Route::resource('users', Admin\UsersController::class)->except(['create', 'store', 'show']);
+
     });
 
 });

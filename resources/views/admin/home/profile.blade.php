@@ -8,7 +8,10 @@
         <span>个人资料</span>
       </h3>
     </div>
-    <div class="p-5 lg:p-6 flex-grow w-full">
+    <div class="p-5 lg:p-6 flex-grow w-full md:flex md:space-x-5">
+      <p class="md:flex-none md:w-1/3 text-gray-500 text-sm mb-5">
+        修改个人资料的昵称，密码
+      </p>
       <form action="{{ route('admin.profile.update') }}" method="post" class="space-y-6 md:w-1/2">
         <div hidden>@csrf</div>
         <div class="space-y-1">

@@ -44,7 +44,7 @@
         </x-sidebar.item>
       </x-sidebar.group>
       <x-sidebar.group label="应用">
-        <x-sidebar.item label="用户" icon="heroicon-o-user"></x-sidebar.item>
+        <x-sidebar.item label="用户" icon="heroicon-o-user" href="{{ route('admin.users.index') }}"></x-sidebar.item>
         <x-sidebar.item label="卡片分组" icon="heroicon-o-folder-open"></x-sidebar.item>
         <x-sidebar.item label="卡片" icon="heroicon-o-clipboard-list"></x-sidebar.item>
         <x-sidebar.item label="统计报告" icon="heroicon-o-chart-square-bar"></x-sidebar.item>

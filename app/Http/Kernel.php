@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'guard' => \App\Http\Middleware\DefaultGuard::class,
+        'refresh.token' => \App\Http\Middleware\RefreshToken::class,
         'admin.auth' => \App\Http\Middleware\AdminAuthenticate::class,
         'admin.guest' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
     ];

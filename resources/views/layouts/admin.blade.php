@@ -21,7 +21,9 @@
     <!-- Page Content -->
     <main id="page-content" class="flex flex-auto flex-col max-w-full pt-16">
       <!-- Page Section -->
-      <div class="max-w-8xl mx-auto p-4 lg:p-8 w-full">
+      <div class="max-w-8xl mx-auto p-4 lg:p-8 w-full space-y-6">
+
+        @yield('breadcrumb')
 
         @include('partials.admin.message')
 
