@@ -16,7 +16,6 @@ class AdminUserSeeder extends Seeder
     {
         AdminUser::create([
            'name' => 'admin',
-           'email' => 'admin@laravelkit.test',
            'password' => 'password',
         ]);
     }
