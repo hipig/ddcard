@@ -15,3 +15,9 @@ mix.js('resources/js/app.js', 'public/js')
   .postCss('resources/css/app.css', 'public/css', [
     require("tailwindcss"),
   ]);
+
+// filepond
+mix.js('resources/vendor/filepond/filepond.js', 'public/vendor/filepond')
+  .postCss('resources/vendor/filepond/filepond.css', 'public/vendor/filepond', [
+    require("tailwindcss"),
+  ]);

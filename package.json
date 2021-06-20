@@ -12,6 +12,9 @@
     "devDependencies": {
         "autoprefixer": "^10.2.5",
         "axios": "^0.21",
+        "filepond-plugin-file-validate-size": "^2.2.4",
+        "filepond-plugin-file-validate-type": "^1.2.6",
+        "filepond-plugin-image-preview": "^4.6.6",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.2.13",
@@ -22,6 +25,7 @@
         "@tailwindcss/forms": "^0.3.2",
         "@tailwindcss/typography": "^0.4.0",
         "alpinejs": "^2.8.2",
+        "filepond": "^4.28.2",
         "simplebar": "^5.3.2"
     }
 }

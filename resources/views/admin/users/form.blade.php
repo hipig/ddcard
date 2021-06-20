@@ -26,7 +26,7 @@
 @section('content')
   <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
     <div class="py-4 px-5 lg:px-6 flex-grow w-full bg-gray-50">
-      <span class="text-lg">用户编辑</span>
+      <span>用户编辑</span>
     </div>
     <div class="p-5 lg:p-6 flex-grow w-full">
       <form action="{{ route('admin.users.update', $user) }}" method="post" class="space-y-6">
@@ -55,8 +55,11 @@
           <input type="password" id="password_confirmation" name="password_confirmation" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-2/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入确认密码" />
         </div>
         <div class="md:w-4/5 ml-auto">
-          <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none md:ml-6 px-5 py-2 leading-6 rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
+          <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none md:ml-6 px-4 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
             确认
+          </button>
+          <button type="button" x-on:click="window.history.back()" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-4 py-2 leading-5 text-sm border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+            返回
           </button>
         </div>
       </form>

@@ -29,13 +29,13 @@
     }
 @endphp
 
-<div class="p-4 md:p-5 rounded {{ $wrapperClass }}">
+<div x-data="{open: true}" x-show="open" class="p-4 md:p-5 rounded {{ $wrapperClass }}">
   <div class="flex items-center space-x-3">
     <x-dynamic-component :component="$localIcon" class="w-5 h-5 flex-none {{ $iconClass }}" />
     <h3 class="font-semibold flex-grow">
       {{ $slot }}
     </h3>
-    <button type="button" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none ml-3 px-2 py-1 leading-5 text-sm border-transparent focus:ring focus:ring-opacity-50 {{ $closeClass }}">
+    <button type="button" x-on:click="open = false" class="inline-flex justify-center items-center space-x-2 rounded border font-semibold focus:outline-none px-1 py-1 leading-5 text-sm border-transparent focus:ring focus:ring-opacity-50 {{ $closeClass }}">
       <x-heroicon-s-x class="w-5 h-5" />
     </button>
   </div>

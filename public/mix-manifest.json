@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/vendor/filepond/filepond.js": "/vendor/filepond/filepond.js",
+    "/vendor/filepond/filepond.css": "/vendor/filepond/filepond.css",
     "/css/app.css": "/css/app.css"
 }

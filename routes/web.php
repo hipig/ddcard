@@ -40,7 +40,15 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         Route::get('/', [Admin\HomeController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('users', Admin\UsersController::class)->except(['create', 'store', 'show']);
+        Route::resource('card-groups', Admin\CardGroupsController::class)->names('groups')->except(['show'])->parameters([
+            'card-groups' => 'group'
+        ]);;
 
+        Route::prefix('filepond')->group(function () {
+            Route::post('process', [Admin\FilepondUploadsController::class, 'process'])->name('filepond.process');
+            Route::get('load', [Admin\FilepondUploadsController::class, 'load'])->name('filepond.load');
+            Route::delete('revert', [Admin\FilepondUploadsController::class, 'revert'])->name('filepond.revert');
+        });
     });
 
 });

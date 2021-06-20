@@ -1,0 +1,30 @@
+@import "~filepond/dist/filepond.css";
+@import "~filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+.filepond--root {
+  @apply font-sans;
+}
+
+.filepond-has-error .filepond--panel-root {
+  @apply border-red-500;
+}
+.filepond-has-error .filepond--label-action {
+  @apply text-red-600 hover:text-red-500 focus-within:ring-red-500 mr-1;
+}
+
+.filepond--panel-root {
+  @apply border-2 border-gray-300 border-dashed rounded bg-transparent;
+}
+
+.filepond--drop-label {
+  @apply text-gray-600 text-sm;
+  will-change: auto;
+}
+
+.filepond--label-action {
+  @apply rounded-md no-underline bg-white text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500;
+}
+
+.filepond--file-action-button {
+  @apply cursor-pointer;
+}

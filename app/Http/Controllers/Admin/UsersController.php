@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserRequest;
+use App\ModelFilters\Admin\UserFilter;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::query()
-            ->latest()
-            ->paginate();
+        $users = User::filter($request->all(), UserFilter::class)->latest()->paginate();
 
         return view('admin.users.index', compact('users'));
     }
