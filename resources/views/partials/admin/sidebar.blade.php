@@ -37,9 +37,9 @@
     <x-sidebar.menu>
       <x-sidebar.item label="仪表盘" icon="heroicon-o-home" href="{{ route('admin.dashboard') }}" :active="if_route_pattern('admin.dashboard')"></x-sidebar.item>
       <x-sidebar.group label="系统">
-        <x-sidebar.item label="系统设置" icon="heroicon-o-cog">
+        <x-sidebar.item label="系统设置" icon="heroicon-o-cog" :active="if_route_pattern('admin.settings.*')">
           <x-sidebar.subitem label="基础"></x-sidebar.subitem>
-          <x-sidebar.subitem label="会员"></x-sidebar.subitem>
+          <x-sidebar.subitem label="会员" href="{{ route('admin.settings.edit.vip') }}" :active="if_route('admin.settings.edit.vip')"></x-sidebar.subitem>
         </x-sidebar.item>
         <x-sidebar.item label="权限管理" icon="heroicon-o-shield-check">
           <x-sidebar.subitem label="管理员"></x-sidebar.subitem>

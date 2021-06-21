@@ -45,6 +45,11 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         ]);
         Route::resource('cards', Admin\CardsController::class)->except(['show']);
 
+        Route::prefix('settings')->group(function () {
+            Route::get('vip', [Admin\SettingsController::class, 'editVip'])->name('settings.edit.vip');
+            Route::put('vip', [Admin\SettingsController::class, 'updateVip'])->name('settings.update.vip');
+        });
+
         Route::prefix('filepond')->group(function () {
             Route::post('process', [Admin\FilepondUploadsController::class, 'process'])->name('filepond.process');
             Route::get('load', [Admin\FilepondUploadsController::class, 'load'])->name('filepond.load');

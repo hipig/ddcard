@@ -36,7 +36,7 @@
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="group_id" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">分组</label>
-          <select id="group_id" name="group_id" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+          <select id="group_id" name="group_id" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             <option value="">请选择</option>
             @foreach($groups as $group)
               <option value="{{ $group->id }}" {{ $card->group_id == $group->id ? 'selected' : '' }}>{{ $group->zh_name }}</option>
