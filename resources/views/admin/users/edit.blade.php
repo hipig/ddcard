@@ -54,7 +54,7 @@
           <label for="password_confirmation" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">确认密码</label>
           <input type="password" id="password_confirmation" name="password_confirmation" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-2/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入确认密码" />
         </div>
-        <div class="md:w-4/5 ml-auto">
+        <div class="md:w-4/5 ml-auto space-x-2">
           <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none md:ml-6 px-4 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
             确认
           </button>

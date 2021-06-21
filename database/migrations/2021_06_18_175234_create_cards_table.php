@@ -18,9 +18,11 @@ class CreateCardsTable extends Migration
             $table->unsignedBigInteger('group_id')->comment('卡组ID');
             $table->string('zh_name')->comment('中文名称');
             $table->string('en_name')->comment('英文名称');
-            $table->string('zh_spell')->comment('中文发音');
-            $table->string('en_spell')->comment('英文发音（美式）');
-            $table->string('uk_spell')->comment('英文发音（英式）');
+            $table->string('zh_spell')->nullable()->comment('中文发音');
+            $table->string('en_spell')->nullable()->comment('英文发音（美式）');
+            $table->string('uk_spell')->nullable()->comment('英文发音（英式）');
+            $table->string('zh_audio_path')->nullable()->comment('中文名称音频路径');
+            $table->string('en_audio_path')->nullable()->comment('英文名称音频路径');
             $table->string('cover')->comment('封面');
             $table->char('color', 50)->comment('样式');
             $table->boolean('status')->default(true)->comment('状态');

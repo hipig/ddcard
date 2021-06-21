@@ -42,7 +42,8 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         Route::resource('users', Admin\UsersController::class)->except(['create', 'store', 'show']);
         Route::resource('card-groups', Admin\CardGroupsController::class)->names('groups')->except(['show'])->parameters([
             'card-groups' => 'group'
-        ]);;
+        ]);
+        Route::resource('cards', Admin\CardsController::class)->except(['show']);
 
         Route::prefix('filepond')->group(function () {
             Route::post('process', [Admin\FilepondUploadsController::class, 'process'])->name('filepond.process');

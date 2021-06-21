@@ -10,7 +10,7 @@
     </a>
   </li>
 @else
-  <li x-data="{menuItemOpen: false}">
+  <li x-data="{menuItemOpen: false}" x-init="() => menuItemOpen = @json($active ?? false)">
     <a
       href="javascript:;"
       class="flex items-center space-x-3 px-3 py-2 hover:bg-gray-800 hover:bg-opacity-75 hover:text-white rounded-t transition ease-out duration-100"

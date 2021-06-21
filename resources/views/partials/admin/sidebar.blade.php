@@ -12,7 +12,7 @@
   <!-- Sidebar Header -->
   <div class="h-16 bg-gray-600 bg-opacity-25 flex-none flex items-center justify-between lg:justify-center px-4 w-full">
     <!-- Brand -->
-    <a href="#" class="inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-white-600 hover:text-white-400 text-white hover:opacity-75">
+    <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-white-600 hover:text-white-400 text-white hover:opacity-75">
       <x-heroicon-o-cube-transparent class="w-5 h-5 text-indigo-400"></x-heroicon-o-cube-transparent>
       <span>{{ config('app.name') }}</span>
     </a>
@@ -35,19 +35,27 @@
   <!-- Sidebar Navigation -->
   <div class="sidebar-scroll-section" data-simplebar>
     <x-sidebar.menu>
-      <x-sidebar.item label="仪表盘" icon="heroicon-o-home" href="{{ route('admin.dashboard') }}"></x-sidebar.item>
+      <x-sidebar.item label="仪表盘" icon="heroicon-o-home" href="{{ route('admin.dashboard') }}" :active="if_route_pattern('admin.dashboard')"></x-sidebar.item>
       <x-sidebar.group label="系统">
-        <x-sidebar.item label="系统设置" icon="heroicon-o-cog"></x-sidebar.item>
+        <x-sidebar.item label="系统设置" icon="heroicon-o-cog">
+          <x-sidebar.subitem label="基础"></x-sidebar.subitem>
+          <x-sidebar.subitem label="会员"></x-sidebar.subitem>
+        </x-sidebar.item>
         <x-sidebar.item label="权限管理" icon="heroicon-o-shield-check">
           <x-sidebar.subitem label="管理员"></x-sidebar.subitem>
           <x-sidebar.subitem label="角色"></x-sidebar.subitem>
         </x-sidebar.item>
       </x-sidebar.group>
       <x-sidebar.group label="应用">
-        <x-sidebar.item label="用户" icon="heroicon-o-user" href="{{ route('admin.users.index') }}"></x-sidebar.item>
-        <x-sidebar.item label="卡片分组" icon="heroicon-o-folder-open" href="{{ route('admin.groups.index') }}"></x-sidebar.item>
-        <x-sidebar.item label="卡片" icon="heroicon-o-clipboard-list"></x-sidebar.item>
-        <x-sidebar.item label="统计报告" icon="heroicon-o-chart-square-bar"></x-sidebar.item>
+        <x-sidebar.item label="用户" icon="heroicon-o-user" href="{{ route('admin.users.index') }}" :active="if_route_pattern('admin.users.*')"></x-sidebar.item>
+        <x-sidebar.item label="卡片分组" icon="heroicon-o-folder-open" href="{{ route('admin.groups.index') }}" :active="if_route_pattern('admin.groups.*')"></x-sidebar.item>
+        <x-sidebar.item label="卡片" icon="heroicon-o-clipboard-list" href="{{ route('admin.cards.index') }}" :active="if_route_pattern('admin.cards.*')"></x-sidebar.item>
+        <x-sidebar.item label="统计报告" icon="heroicon-o-chart-square-bar">
+          <x-sidebar.subitem label="会员开通"></x-sidebar.subitem>
+          <x-sidebar.subitem label="解锁记录"></x-sidebar.subitem>
+          <x-sidebar.subitem label="学习天数"></x-sidebar.subitem>
+          <x-sidebar.subitem label="学习时长"></x-sidebar.subitem>
+        </x-sidebar.item>
       </x-sidebar.group>
     </x-sidebar.menu>
   </div>

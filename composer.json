@@ -10,6 +10,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "hieu-le/active": "^8.0",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "overtrue/laravel-lang": "~5.0",

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '卡片分组添加')
+@section('title', '卡片添加')
 
 @section('breadcrumb')
   <nav>
@@ -11,13 +11,13 @@
         /
       </li>
       <li>
-        <a href="{{ route('admin.groups.index') }}" class="text-indigo-600 hover:text-indigo-400">卡片分组</a>
+        <a href="{{ route('admin.cards.index') }}" class="text-indigo-600 hover:text-indigo-400">卡片</a>
       </li>
       <li class="px-2 sm:px-3 opacity-50">
         /
       </li>
       <li>
-        编辑
+        添加
       </li>
     </ul>
   </nav>
@@ -26,21 +26,41 @@
 @section('content')
   <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
     <div class="py-4 px-5 lg:px-6 flex-grow w-full bg-gray-50">
-      <span class="text-gray-900">卡片分组编辑</span>
+      <span class="text-gray-900">卡片添加</span>
     </div>
     <div class="p-5 lg:p-6 flex-grow w-full">
-      <form action="{{ route('admin.groups.update', $group) }}" method="post" class="space-y-6">
+      <form action="{{ route('admin.cards.store') }}" method="post" class="space-y-6">
         <div hidden>
           @csrf
-          @method('put')
+        </div>
+        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
+          <label for="group_id" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">分组</label>
+          <select id="group_id" name="group_id" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            <option value="">请选择</option>
+            @foreach($groups as $group)
+              <option value="{{ $group->id }}" {{ old('group_id') == $group->id ? 'selected' : '' }}>{{ $group->zh_name }}</option>
+            @endforeach
+          </select>
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="zh_name" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">中文名称</label>
-          <input type="text" id="zh_name" name="zh_name" value="{{ old('zh_name', $group->zh_name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入中文名称" />
+          <input type="text" id="zh_name" name="zh_name" value="{{ old('zh_name') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入中文名称" />
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="en_name" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">英文名称</label>
-          <input type="text" id="en_name" name="en_name" value="{{ old('en_name', $group->en_name) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入英文名称" />
+          <input type="text" id="en_name" name="en_name" value="{{ old('en_name') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入英文名称" />
+        </div>
+        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
+          <label for="zh_spell" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">中文发音</label>
+          <input type="text" id="zh_spell" name="zh_spell" value="{{ old('zh_spell') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入中文发音" />
+        </div>
+        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
+          <label for="en_spell" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">美式发音</label>
+          <input type="text" id="en_spell" name="en_spell" value="{{ old('en_spell') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入美式发音" />
+        </div>
+        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
+          <label for="uk_spell" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">英式发音</label>
+          <input type="text" id="uk_spell" name="uk_spell" value="{{ old('uk_spell') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入英式发音" />
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="cover" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">封面</label>
@@ -66,21 +86,10 @@
                     'pink' => 'bg-pink-600',
                 ];
             @endphp
-            @foreach(\App\Models\CardGroup::$colorMap as $key => $color)
+            @foreach(\App\Models\Card::$colorMap as $key => $color)
               <label class="inline-flex items-center space-x-2">
-                <input id="color" type="radio" name="color" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $group->color == $key ? 'checked' : '' }}>
+                <input id="color" type="radio" name="color" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $loop->first ? 'checked' : '' }}>
                 <span class="rounded w-5 h-5 {{ $colorMap[$key] }}" title="{{ $color }}"></span>
-              </label>
-            @endforeach
-          </div>
-        </div>
-        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
-          <label for="cover" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">锁定状态</label>
-          <div class="w-full md:w-3/5 space-x-6">
-            @foreach(\App\Models\CardGroup::$lockStatusMap as $key => $value)
-              <label class="inline-flex items-center space-x-2">
-                <input id="is_lock" type="radio" name="is_lock" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $group->is_lock === $key ? 'checked' : '' }}>
-                <span>{{ $value }}</span>
               </label>
             @endforeach
           </div>
@@ -88,9 +97,9 @@
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="cover" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">状态</label>
           <div class="w-full md:w-3/5 space-x-6">
-            @foreach(\App\Models\CardGroup::$statusMap as $key => $value)
+            @foreach(\App\Models\Card::$statusMap as $key => $value)
               <label class="inline-flex items-center space-x-2">
-                <input id="status" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $group->status === $key ? 'checked' : '' }}>
+                <input id="is_lock" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $loop->first ? 'checked' : '' }}>
                 <span>{{ $value }}</span>
               </label>
             @endforeach
@@ -98,7 +107,7 @@
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="index" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">排序</label>
-          <input type="number" id="index" name="index" value="{{ old('index', $group->index) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入排序" />
+          <input type="number" id="index" name="index" value="{{ old('index', 99) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入排序" />
         </div>
         <div class="md:w-4/5 ml-auto space-x-2">
           <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none md:ml-6 px-4 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
@@ -122,20 +131,10 @@
   <script>
     function filepoond() {
       return {
-        path: `{{ $group->cover }}`,
+        path: '',
         filepond: null,
 
         initFilepond() {
-          let files = []
-          if(this.path) {
-            files.push({
-              options: {
-                type: 'local'
-              },
-              source: this.path
-            })
-          }
-
           FilePond.setOptions({
             server: {
               url: '/admin/filepond',
@@ -159,8 +158,7 @@
             allowMultiple: false,
             maxFiles: 1,
             acceptedFileTypes: 'image/*',
-            allowImagePreview: true,
-            files
+            allowImagePreview: true
           })
         }
       }

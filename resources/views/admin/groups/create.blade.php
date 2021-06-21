@@ -26,7 +26,7 @@
 @section('content')
   <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
     <div class="py-4 px-5 lg:px-6 flex-grow w-full bg-gray-50">
-      <span>卡片分组添加</span>
+      <span class="text-gray-900">卡片分组添加</span>
     </div>
     <div class="p-5 lg:p-6 flex-grow w-full">
       <form action="{{ route('admin.groups.store') }}" method="post" class="space-y-6">
@@ -131,8 +131,8 @@
               process: {
                 url: '/process',
                 onload: (response) => {
-                  path = eval('('+response+')');
-                  return path;
+                  this.path = eval('('+response+')');
+                  return this.path;
                 }
               },
               revert: '/revert',

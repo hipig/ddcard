@@ -61,12 +61,12 @@
           <thead>
           <tr class="text-gray-700 bg-gray-50 font-semibold">
             <th class="py-3 px-6 text-left">名称</th>
-            <th>颜色样式</th>
-            <th>卡片总数</th>
-            <th>锁定状态</th>
-            <th>状态</th>
-            <th>创建时间</th>
-            <th>操作</th>
+            <th class="py-3 px-6">颜色样式</th>
+            <th class="py-3 px-6">卡片总数</th>
+            <th class="py-3 px-6">锁定状态</th>
+            <th class="py-3 px-6">状态</th>
+            <th class="py-3 px-6">创建时间</th>
+            <th class="py-3 px-6">操作</th>
           </tr>
           </thead>
 
@@ -94,7 +94,7 @@
                       <img src="{{ $group->cover_url }}" alt="{{ $group->zh_name }}" class="inline-block w-10 h-10 rounded-lg" />
                     @endif
                     <div class="flex flex-col">
-                      <h3 class="text-gray-900 text-base font-medium">{{ $group->zh_name }}</h3>
+                      <a href="{{ route('admin.groups.edit', $group) }}" class="text-gray-900 text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $group->zh_name }}</a>
                       <p class="text-gray-500">{{ $group->en_name }}</p>
                     </div>
                   </div>
@@ -123,6 +123,10 @@
                   <span class="text-gray-500">{{ $group->created_at }}</span>
                 </td>
                 <td class="py-3 px-6 text-center">
+                  <a href="#" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+                    <x-heroicon-s-lock-open  class="w-4 h-4"/>
+                    <span>解锁记录</span>
+                  </a>
                   <a href="{{ route('admin.groups.edit', $group) }}" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
                     <x-heroicon-s-pencil  class="w-4 h-4"/>
                     <span>编辑</span>
@@ -136,7 +140,7 @@
             @endforeach
           @else
             <tr class="border-t border-gray-100">
-              <td class="py-6 px-6 text-center text-gray-500" colspan="5">暂无数据。</td>
+              <td class="py-6 px-6 text-center text-gray-500" colspan="7">暂无数据。</td>
             </tr>
           @endif
           </tbody>
