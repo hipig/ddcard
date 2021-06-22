@@ -67,7 +67,7 @@
             @endphp
             @foreach(\App\Models\CardGroup::$colorMap as $key => $color)
               <label class="inline-flex items-center space-x-2">
-                <input id="color" type="radio" name="color" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $loop->first ? 'checked' : '' }}>
+                <input id="color" type="radio" name="color" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('color', \App\Models\CardGroup::COLOR_GRAY) == $key ? 'checked' : '' }}>
                 <span class="rounded w-5 h-5 {{ $colorMap[$key] }}" title="{{ $color }}"></span>
               </label>
             @endforeach
@@ -78,7 +78,7 @@
           <div class="w-full md:w-3/5 space-x-6">
             @foreach(\App\Models\CardGroup::$lockStatusMap as $key => $value)
               <label class="inline-flex items-center space-x-2">
-                <input id="is_lock" type="radio" name="is_lock" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $loop->first ? 'checked' : '' }}>
+                <input id="is_lock" type="radio" name="is_lock" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('is_lock', \App\Models\CardGroup::LOCK_STATUS_UNLOCK) == $key  ? 'checked' : '' }}>
                 <span>{{ $value }}</span>
               </label>
             @endforeach
@@ -89,7 +89,7 @@
           <div class="w-full md:w-3/5 space-x-6">
             @foreach(\App\Models\CardGroup::$statusMap as $key => $value)
               <label class="inline-flex items-center space-x-2">
-                <input id="is_lock" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ $loop->first ? 'checked' : '' }}>
+                <input id="is_lock" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('status', \App\Models\CardGroup::STATUS_ENABLE) == $key ? 'checked' : '' }}>
                 <span>{{ $value }}</span>
               </label>
             @endforeach
@@ -121,10 +121,20 @@
   <script>
     function filepoond() {
       return {
-        path: '',
+        path: `{{ old('cover') }}`,
         filepond: null,
 
         initFilepond() {
+          let files = []
+          if(this.path) {
+            files.push({
+              options: {
+                type: 'local'
+              },
+              source: this.path
+            })
+          }
+
           FilePond.setOptions({
             server: {
               url: '/admin/filepond',
@@ -148,7 +158,8 @@
             allowMultiple: false,
             maxFiles: 1,
             acceptedFileTypes: 'image/*',
-            allowImagePreview: true
+            allowImagePreview: true,
+            files
           })
         }
       }

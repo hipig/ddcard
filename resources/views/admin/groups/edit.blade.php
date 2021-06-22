@@ -122,7 +122,7 @@
   <script>
     function filepoond() {
       return {
-        path: `{{ $group->cover }}`,
+        path: `{{ old('cover', $group->cover) }}`,
         filepond: null,
 
         initFilepond() {

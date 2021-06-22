@@ -60,6 +60,10 @@ class CardGroup extends Model
         'index',
     ];
 
+    protected $appends = [
+        'cover_url',
+    ];
+
     public function cards()
     {
         return $this->hasMany(Card::class, 'group_id');

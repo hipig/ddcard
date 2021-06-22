@@ -132,7 +132,7 @@
   <script>
     function filepoond() {
       return {
-        path: `{{ $card->cover }}`,
+        path: `{{ old('cover', $card->cover) }}`,
         filepond: null,
 
         initFilepond() {
@@ -152,8 +152,8 @@
               process: {
                 url: '/process',
                 onload: (response) => {
-                  this.path = eval('('+response+')');
-                  return this.path;
+                  this.path = eval('('+response+')')
+                  return this.path
                 }
               },
               revert: '/revert',

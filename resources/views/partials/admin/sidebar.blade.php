@@ -41,10 +41,8 @@
           <x-sidebar.subitem label="基础"></x-sidebar.subitem>
           <x-sidebar.subitem label="会员" href="{{ route('admin.settings.edit.vip') }}" :active="if_route('admin.settings.edit.vip')"></x-sidebar.subitem>
         </x-sidebar.item>
-        <x-sidebar.item label="权限管理" icon="heroicon-o-shield-check">
-          <x-sidebar.subitem label="管理员"></x-sidebar.subitem>
-          <x-sidebar.subitem label="角色"></x-sidebar.subitem>
-        </x-sidebar.item>
+        <x-sidebar.item label="管理员" icon="heroicon-o-shield-check"></x-sidebar.item>
+        <x-sidebar.item label="角色" icon="heroicon-o-lock-closed"></x-sidebar.item>
       </x-sidebar.group>
       <x-sidebar.group label="应用">
         <x-sidebar.item label="用户" icon="heroicon-o-user" href="{{ route('admin.users.index') }}" :active="if_route_pattern('admin.users.*')"></x-sidebar.item>
@@ -52,9 +50,10 @@
         <x-sidebar.item label="卡片" icon="heroicon-o-clipboard-list" href="{{ route('admin.cards.index') }}" :active="if_route_pattern('admin.cards.*')"></x-sidebar.item>
         <x-sidebar.item label="统计报告" icon="heroicon-o-chart-square-bar">
           <x-sidebar.subitem label="会员开通"></x-sidebar.subitem>
-          <x-sidebar.subitem label="解锁记录"></x-sidebar.subitem>
-          <x-sidebar.subitem label="学习天数"></x-sidebar.subitem>
-          <x-sidebar.subitem label="学习时长"></x-sidebar.subitem>
+          <x-sidebar.subitem label="卡组解锁"></x-sidebar.subitem>
+          <x-sidebar.subitem label="收藏记录"></x-sidebar.subitem>
+          <x-sidebar.subitem label="在线时长"></x-sidebar.subitem>
+          <x-sidebar.subitem label="卡片学习记录"></x-sidebar.subitem>
         </x-sidebar.item>
       </x-sidebar.group>
     </x-sidebar.menu>
