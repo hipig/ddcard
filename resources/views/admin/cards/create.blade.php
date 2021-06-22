@@ -2,25 +2,11 @@
 @section('title', '卡片添加')
 
 @section('breadcrumb')
-  <nav>
-    <ul class="flex items-center">
-      <li>
-        <a href="{{ route('admin.dashboard') }}" class="text-indigo-600 hover:text-indigo-400">仪表盘</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        <a href="{{ route('admin.cards.index') }}" class="text-indigo-600 hover:text-indigo-400">卡片</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        添加
-      </li>
-    </ul>
-  </nav>
+  <x-breadcrumb.list>
+    <x-breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-breadcrumb.item>
+    <x-breadcrumb.item href="{{ route('admin.cards.index') }}">卡片</x-breadcrumb.item>
+    <x-breadcrumb.item>添加</x-breadcrumb.item>
+  </x-breadcrumb.list>
 @endsection
 
 @section('content')

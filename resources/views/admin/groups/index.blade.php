@@ -2,25 +2,11 @@
 @section('title', '卡片分组')
 
 @section('breadcrumb')
-  <nav>
-    <ul class="flex items-center">
-      <li>
-        <a href="{{ route('admin.dashboard') }}" class="text-indigo-600 hover:text-indigo-400">仪表盘</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        <a href="{{ route('admin.groups.index') }}" class="text-indigo-600 hover:text-indigo-400">卡片分组</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        列表
-      </li>
-    </ul>
-  </nav>
+  <x-breadcrumb.list>
+    <x-breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-breadcrumb.item>
+    <x-breadcrumb.item href="{{ route('admin.groups.index') }}">卡片分组</x-breadcrumb.item>
+    <x-breadcrumb.item>列表</x-breadcrumb.item>
+  </x-breadcrumb.list>
 @endsection
 
 @section('content')
@@ -94,7 +80,7 @@
                       <img src="{{ $group->cover_url }}" alt="{{ $group->zh_name }}" class="inline-block w-10 h-10 rounded-lg" />
                     @endif
                     <div class="flex flex-col">
-                      <a href="{{ route('admin.groups.edit', $group) }}" class="text-gray-900 text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $group->zh_name }}</a>
+                      <a href="{{ route('admin.groups.edit', $group) }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $group->zh_name }}</a>
                       <p class="text-gray-500">{{ $group->en_name }}</p>
                     </div>
                   </div>
@@ -103,7 +89,7 @@
                   <span class="inline-block rounded w-5 h-5 {{ $colorMap[$group->color] }}" title="{{ $group->color }}"></span>
                 </td>
                 <td class="py-3 px-6 text-center">
-                  <span>{{ $group->cards_count }}</span>
+                  <a href="{{ route('admin.cards.index') . '?group_id=' . $group->id }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $group->cards_count }}</a>
                 </td>
                 <td class="py-3 px-6 text-center">
                   @if($group->is_lock == \App\Models\CardGroup::LOCK_STATUS_UNLOCK)

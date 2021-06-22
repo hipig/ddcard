@@ -55,6 +55,10 @@ class Card extends Model
         'index',
     ];
 
+    protected $appends = [
+        'cover_url',
+    ];
+
     public function group()
     {
         return $this->belongsTo(CardGroup::class, 'group_id');

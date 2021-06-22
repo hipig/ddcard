@@ -2,25 +2,11 @@
 @section('title', '卡片')
 
 @section('breadcrumb')
-  <nav>
-    <ul class="flex items-center">
-      <li>
-        <a href="{{ route('admin.dashboard') }}" class="text-indigo-600 hover:text-indigo-400">仪表盘</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        <a href="{{ route('admin.cards.index') }}" class="text-indigo-600 hover:text-indigo-400">卡片</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        列表
-      </li>
-    </ul>
-  </nav>
+  <x-breadcrumb.list>
+    <x-breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-breadcrumb.item>
+    <x-breadcrumb.item href="{{ route('admin.cards.index') }}">卡片</x-breadcrumb.item>
+    <x-breadcrumb.item>列表</x-breadcrumb.item>
+  </x-breadcrumb.list>
 @endsection
 
 @section('content')
@@ -95,7 +81,7 @@
                       <img src="{{ $card->cover_url }}" alt="{{ $card->zh_name }}" class="inline-block w-10 h-10 rounded-lg" />
                     @endif
                     <div class="flex flex-col">
-                      <a href="{{ route('admin.cards.edit', $card) }}" class="text-gray-900 text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $card->zh_name }}</a>
+                      <a href="{{ route('admin.cards.edit', $card) }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $card->zh_name }}</a>
                       <p class="text-gray-500">{{ $card->en_name }}</p>
                     </div>
                   </div>

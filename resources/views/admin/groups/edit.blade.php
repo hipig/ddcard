@@ -2,25 +2,11 @@
 @section('title', '卡片分组添加')
 
 @section('breadcrumb')
-  <nav>
-    <ul class="flex items-center">
-      <li>
-        <a href="{{ route('admin.dashboard') }}" class="text-indigo-600 hover:text-indigo-400">仪表盘</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        <a href="{{ route('admin.groups.index') }}" class="text-indigo-600 hover:text-indigo-400">卡片分组</a>
-      </li>
-      <li class="px-2 sm:px-3 opacity-50">
-        /
-      </li>
-      <li>
-        编辑
-      </li>
-    </ul>
-  </nav>
+  <x-breadcrumb.list>
+    <x-breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-breadcrumb.item>
+    <x-breadcrumb.item href="{{ route('admin.groups.index') }}">卡片分组</x-breadcrumb.item>
+    <x-breadcrumb.item>编辑</x-breadcrumb.item>
+  </x-breadcrumb.list>
 @endsection
 
 @section('content')
