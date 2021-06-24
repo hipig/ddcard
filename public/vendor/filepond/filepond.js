@@ -54,6 +54,88 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/filepond-plugin-file-metadata/dist/filepond-plugin-file-metadata.js":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/filepond-plugin-file-metadata/dist/filepond-plugin-file-metadata.js ***!
+  \******************************************************************************************/
+/***/ (function(module) {
+
+/*!
+ * FilePondPluginFileMetadata 1.0.8
+ * Licensed under MIT, https://opensource.org/licenses/MIT/
+ * Please visit https://pqina.nl/filepond/ for details.
+ */
+
+/* eslint-disable */
+
+(function(global, factory) {
+   true
+    ? (module.exports = factory())
+    : 0;
+})(this, function() {
+  'use strict';
+
+  var plugin = function plugin(_ref) {
+    var addFilter = _ref.addFilter,
+      utils = _ref.utils;
+
+    // get quick reference to Type utils
+    var Type = utils.Type;
+
+    // setup attribute mapping for accept
+    addFilter('SET_ATTRIBUTE_TO_OPTION_MAP', function(map) {
+      return Object.assign(map, {
+        '^fileMetadata': {
+          group: 'fileMetadataObject'
+        }
+      });
+    });
+
+    addFilter('DID_LOAD_ITEM', function(item, _ref2) {
+      var query = _ref2.query;
+      return new Promise(function(resolve) {
+        if (!query('GET_ALLOW_FILE_METADATA')) {
+          return resolve(item);
+        }
+
+        // get default object and add as metadata
+        var data = query('GET_FILE_METADATA_OBJECT');
+        if (typeof data === 'object' && data !== null) {
+          Object.keys(data).forEach(function(key) {
+            item.setMetadata(key, data[key], true);
+          });
+        }
+
+        resolve(item);
+      });
+    });
+
+    return {
+      options: {
+        // Enable or disable file renaming
+        allowFileMetadata: [true, Type.BOOLEAN],
+
+        // A metadata object to add to all files
+        fileMetadataObject: [null, Type.OBJECT]
+      }
+    };
+  };
+
+  // fire pluginloaded event if running in browser, this allows registering the plugin when using async script tags
+  var isBrowser =
+    typeof window !== 'undefined' && typeof window.document !== 'undefined';
+  if (isBrowser) {
+    document.dispatchEvent(
+      new CustomEvent('FilePond:pluginloaded', { detail: plugin })
+    );
+  }
+
+  return plugin;
+});
+
+
+/***/ }),
+
 /***/ "./node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js":
 /*!****************************************************************************************************!*\
   !*** ./node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js ***!
@@ -17007,11 +17089,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
 /* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var filepond_plugin_file_metadata__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-file-metadata */ "./node_modules/filepond-plugin-file-metadata/dist/filepond-plugin-file-metadata.js");
+/* harmony import */ var filepond_plugin_file_metadata__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_file_metadata__WEBPACK_IMPORTED_MODULE_5__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -17024,6 +17109,7 @@ filepond__WEBPACK_IMPORTED_MODULE_0__.setOptions(_objectSpread(_objectSpread({},
 filepond__WEBPACK_IMPORTED_MODULE_0__.registerPlugin((filepond_plugin_file_validate_size__WEBPACK_IMPORTED_MODULE_2___default()));
 filepond__WEBPACK_IMPORTED_MODULE_0__.registerPlugin((filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_3___default()));
 filepond__WEBPACK_IMPORTED_MODULE_0__.registerPlugin((filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_4___default()));
+filepond__WEBPACK_IMPORTED_MODULE_0__.registerPlugin((filepond_plugin_file_metadata__WEBPACK_IMPORTED_MODULE_5___default()));
 window.FilePond = filepond__WEBPACK_IMPORTED_MODULE_0__;
 })();
 

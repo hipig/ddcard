@@ -26,6 +26,7 @@
         "@tailwindcss/typography": "^0.4.0",
         "alpinejs": "^2.8.2",
         "filepond": "^4.28.2",
+        "filepond-plugin-file-metadata": "^1.0.8",
         "simplebar": "^5.3.2"
     }
 }

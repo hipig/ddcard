@@ -23,12 +23,10 @@ class CardGroupsController extends Controller
 
     public function show(Request $request, CardGroup $group)
     {
-        $cards = $group->cards()
-            ->status()
-            ->orderIndex()
-            ->latest()
-            ->get();
+        $group->load(['cards' => function($query) {
+            $query->status()->orderIndex()->latest();
+        }]);
 
-        return CardGroupResource::collection($cards);
+        return CardGroupResource::make($group);
     }
 }

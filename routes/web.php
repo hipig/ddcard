@@ -44,6 +44,7 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
             'card-groups' => 'group'
         ]);
         Route::resource('cards', Admin\CardsController::class)->except(['show']);
+        Route::post('cards/{card}/generate-audio', [Admin\CardsController::class, 'generateAudio'])->name('cards.generateAudio');
 
         Route::prefix('settings')->group(function () {
             Route::get('vip', [Admin\SettingsController::class, 'editVip'])->name('settings.edit.vip');

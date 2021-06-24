@@ -1,6 +1,6 @@
 <div
   x-data="deleteDialog()"
-  x-on:confirm-delete.window="deleteEvent($event.detail)"
+  x-on:confirm-delete.window="event($event.detail)"
   x-show="open"
   x-transition:enter="transition ease-out duration-200"
   x-transition:enter-start="transform opacity-0"
@@ -59,7 +59,7 @@
         open: false,
         action: '',
 
-        deleteEvent(detail) {
+        event(detail) {
           this.open = !!detail.open
           this.action = detail.action
         },
@@ -67,7 +67,6 @@
           this.open = false
         },
         confirm() {
-          console.log(this.$refs['delete-form'])
           this.$refs['delete-form'].submit()
           this.open = false
         }

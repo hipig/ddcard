@@ -23,6 +23,7 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     // 卡片分组
     Route::get('card-groups', [Api\CardGroupsController::class, 'index'])->name('cardGroups.index');
     Route::get('card-groups/{group}', [Api\CardGroupsController::class, 'show'])->name('cardGroups.show');
+    Route::get('card-groups/{group}/preview', [Api\CardsController::class, 'preview'])->name('cards.preview');
 
     Route::middleware('refresh.token')->group(function () {
 

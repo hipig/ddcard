@@ -7,7 +7,10 @@ use App\Http\Requests\Admin\CardRequest;
 use App\ModelFilters\Admin\CardFilter;
 use App\Models\Card;
 use App\Models\CardGroup;
+use App\Services\XfyunTtsService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CardsController extends Controller
 {
@@ -76,5 +79,28 @@ class CardsController extends Controller
         $card->delete();
 
         return redirect()->route('admin.cards.index')->with('success', '删除卡片成功！');
+    }
+
+    public function generateAudio(Request $request, Card $card, XfyunTtsService $ttsService)
+    {
+        try {
+            $lang = $request->input('lang');
+            foreach ($lang as $value) {
+                $name = "{$value}_name";
+                $audioPath = "{$value}_audio_path";
+
+                $result = $ttsService->toSpeech($name);
+
+                $path = "audios/" . Str::random(40) . ".mp3";
+                Storage::disk('upload')->put($path, $result['data']['audio']);
+
+                $card->$audioPath = $path;
+                $card->save();
+            }
+        } catch (\Exception $e) {
+            abort(500, $e->getMessage() ?? '语音合成失败');
+        }
+
+        return back()->with('success', '生成音频成功！');
     }
 }

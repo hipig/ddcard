@@ -16,6 +16,7 @@
         "overtrue/laravel-lang": "~5.0",
         "overtrue/laravel-wechat": "^6.0",
         "spatie/laravel-settings": "^2.1",
+        "textalk/websocket": "^1.5",
         "tucker-eric/eloquentfilter": "^3.0",
         "tymon/jwt-auth": "^1.0"
     },

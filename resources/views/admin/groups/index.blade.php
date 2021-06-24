@@ -137,7 +137,7 @@
       </div>
     </div>
   </div>
-  <x-table.confirm-delete>
+  <x-dialog.confirm-delete>
     <p class="text-gray-600">是否删除该卡片分组？</p>
-  </x-table.confirm-delete>
+  </x-dialog.confirm-delete>
 @endsection

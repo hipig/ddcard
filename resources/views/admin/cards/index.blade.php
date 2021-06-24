@@ -51,6 +51,7 @@
             <th class="py-3 px-6">颜色样式</th>
             <th class="py-3 px-6">分组</th>
             <th class="py-3 px-6 text-left">发音</th>
+            <th class="py-3 px-6 text-left">音频</th>
             <th class="py-3 px-6">状态</th>
             <th class="py-3 px-6">创建时间</th>
             <th class="py-3 px-6">操作</th>
@@ -93,9 +94,27 @@
                   <a href="{{ route('admin.groups.edit', $card->group) }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $card->group->zh_name }}</a>
                 </td>
                 <td class="py-3 px-6 text-left">
-                  <div class="text-gray-500"><span class="text-gray-900 font-semibold">中：</span>{{ $card->zh_spell }}</div>
-                  <div class="text-gray-500"><span class="text-gray-900 font-semibold">美：</span>{{ $card->en_spell }}</div>
-                  <div class="text-gray-500"><span class="text-gray-900 font-semibold">英：</span>{{ $card->uk_spell }}</div>
+                  <div class="text-gray-500"><span class="text-gray-900 font-semibold">拼音：</span>{{ $card->zh_spell }}</div>
+                  <div class="text-gray-500"><span class="text-gray-900 font-semibold">美式发音：</span>{{ $card->en_spell }}</div>
+                  <div class="text-gray-500"><span class="text-gray-900 font-semibold">英式发音：</span>{{ $card->uk_spell }}</div>
+                </td>
+                <td class="py-3 px-6 text-left">
+                  <div>
+                    <span class="text-gray-900 font-semibold">中文：</span>
+                    @if(is_null($card->zh_audio_path))
+                      <span class="text-gray-500">未生成</span>
+                    @else
+                      <span class="text-green-500">已生成</span>
+                    @endif
+                  </div>
+                  <div>
+                    <span class="text-gray-900 font-semibold">英文：</span>
+                    @if(is_null($card->en_audio_path))
+                      <span class="text-gray-500">未生成</span>
+                    @else
+                      <span class="text-green-500">已生成</span>
+                    @endif
+                  </div>
                 </td>
                 <td class="py-3 px-6 text-center">
                   @if($card->status)
@@ -108,6 +127,10 @@
                   <span class="text-gray-500">{{ $card->created_at }}</span>
                 </td>
                 <td class="py-3 px-6 text-center">
+                  <button x-on:click="$dispatch('submit-dialog-form', { open: true, action: `{{ route('admin.cards.generateAudio', $card) }}` })" type="button" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+                    <x-heroicon-s-volume-up  class="w-4 h-4"/>
+                    <span>生成音频</span>
+                  </button>
                   <a href="{{ route('admin.cards.edit', $card) }}" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
                     <x-heroicon-s-pencil  class="w-4 h-4"/>
                     <span>编辑</span>
@@ -132,7 +155,42 @@
       </div>
     </div>
   </div>
-  <x-table.confirm-delete>
+  <x-dialog.form title="生成音频">
+    <div class="space-y-4">
+      <div class="space-y-1">
+        <label class="font-medium" for="language">语种</label>
+        <div class="w-full space-x-6">
+          <label class="inline-flex items-center space-x-2">
+            <input id="lang-zh" type="checkbox" name="lang[]" value="zh" class="border border-gray-200 rounded h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ in_array('zh', old('lang', [])) ? 'checked' : '' }}>
+            <span>中文</span>
+          </label>
+          <label class="inline-flex items-center space-x-2">
+            <input id="lang-en" type="checkbox" name="lang[]" value="en" class="border border-gray-200 rounded h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ in_array('en', old('lang', [])) ? 'checked' : '' }}>
+            <span>英文</span>
+          </label>
+        </div>
+      </div>
+      <div class="space-y-1">
+        @php
+          $vcns = [
+            'xiaoyan' => '讯飞小燕',
+            'aisjiuxu' => '讯飞许久',
+            'aisxping' => '讯飞小萍',
+            'aisjinger' => '讯飞小婧',
+            'aisbabyxu' => '讯飞许小宝',
+          ];
+        @endphp
+        <label class="font-medium" for="vcn">发音人</label>
+        <select id="vcn" name="vcn" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+          <option value="">请选择</option>
+          @foreach($vcns as $key => $value)
+            <option value="{{ $key }}" {{ old('vcn') == $value ? 'selected' : '' }}>{{ $value }}</option>
+          @endforeach
+        </select>
+      </div>
+    </div>
+  </x-dialog.form>
+  <x-dialog.confirm-delete>
     <p class="text-gray-600">是否删除该卡片？</p>
-  </x-table.confirm-delete>
+  </x-dialog.confirm-delete>
 @endsection

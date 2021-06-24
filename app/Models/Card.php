@@ -7,6 +7,8 @@ use App\Models\Traits\OrderIndexScope;
 use App\Models\Traits\StatusScope;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Card extends Model
 {
@@ -57,10 +59,26 @@ class Card extends Model
 
     protected $appends = [
         'cover_url',
+        'zh_audio_path_url',
+        'en_audio_path_url',
     ];
 
     public function group()
     {
         return $this->belongsTo(CardGroup::class, 'group_id');
+    }
+
+    public function getzhAudioPathUrlAttribute()
+    {
+        $path = $this->attributes['zh_audio_path'];
+
+        return $path ? Storage::disk('upload')->url($path) : '';
+    }
+
+    public function getenAudioPathUrlAttribute()
+    {
+        $path = $this->attributes['en_audio_path'];
+
+        return $path ? Storage::disk('upload')->url($path) : '';
     }
 }
