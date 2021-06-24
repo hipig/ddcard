@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CardRequest;
+use App\Jobs\GenerateAudio;
 use App\ModelFilters\Admin\CardFilter;
 use App\Models\Card;
 use App\Models\CardGroup;
@@ -83,24 +84,10 @@ class CardsController extends Controller
 
     public function generateAudio(Request $request, Card $card, XfyunTtsService $ttsService)
     {
-        try {
-            $lang = $request->input('lang');
-            foreach ($lang as $value) {
-                $name = "{$value}_name";
-                $audioPath = "{$value}_audio_path";
+        dispatch(new GenerateAudio($card, $request->only([
+            'vcn',
+        ])));
 
-                $result = $ttsService->toSpeech($name);
-
-                $path = "audios/" . Str::random(40) . ".mp3";
-                Storage::disk('upload')->put($path, $result['data']['audio']);
-
-                $card->$audioPath = $path;
-                $card->save();
-            }
-        } catch (\Exception $e) {
-            abort(500, $e->getMessage() ?? '语音合成失败');
-        }
-
-        return back()->with('success', '生成音频成功！');
+        return back()->with('success', '生成音频任务提交成功，请稍后！');
     }
 }

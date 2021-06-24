@@ -158,19 +158,6 @@
   <x-dialog.form title="生成音频">
     <div class="space-y-4">
       <div class="space-y-1">
-        <label class="font-medium" for="language">语种</label>
-        <div class="w-full space-x-6">
-          <label class="inline-flex items-center space-x-2">
-            <input id="lang-zh" type="checkbox" name="lang[]" value="zh" class="border border-gray-200 rounded h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ in_array('zh', old('lang', [])) ? 'checked' : '' }}>
-            <span>中文</span>
-          </label>
-          <label class="inline-flex items-center space-x-2">
-            <input id="lang-en" type="checkbox" name="lang[]" value="en" class="border border-gray-200 rounded h-4 w-4 text-indigo-500 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" {{ in_array('en', old('lang', [])) ? 'checked' : '' }}>
-            <span>英文</span>
-          </label>
-        </div>
-      </div>
-      <div class="space-y-1">
         @php
           $vcns = [
             'xiaoyan' => '讯飞小燕',
