@@ -44,7 +44,7 @@ class GenerateAudio implements ShouldQueue
                 $nameField = "{$value}_name";
                 $pathField = "{$value}_audio_path";
 
-                $result = $ttsService->toSpeech($nameField, $this->business);
+                $result = $ttsService->toSpeech($this->card->$nameField, $this->business);
 
                 $path = "audios/" . Str::random(40) . ".mp3";
                 Storage::disk('upload')->put($path, $result['data']['audio']);

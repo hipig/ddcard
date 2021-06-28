@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CardRequest;
+use App\Http\Requests\Admin\GenerateAudioRequest;
 use App\Jobs\GenerateAudio;
 use App\ModelFilters\Admin\CardFilter;
 use App\Models\Card;
@@ -82,7 +83,7 @@ class CardsController extends Controller
         return redirect()->route('admin.cards.index')->with('success', '删除卡片成功！');
     }
 
-    public function generateAudio(Request $request, Card $card, XfyunTtsService $ttsService)
+    public function generateAudio(GenerateAudioRequest $request, Card $card, XfyunTtsService $ttsService)
     {
         dispatch(new GenerateAudio($card, $request->only([
             'vcn',

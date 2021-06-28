@@ -29,8 +29,9 @@ class UserCollectRecordsController extends Controller
         return UserCollectRecordResource::make($record);
     }
 
-    public function destroy(UserCollectRecord $record)
+    public function destroy(Card $card)
     {
+        $record = Auth::user()->collectRecords()->where('card_id', $card->id)->first();
         $record->delete();
 
         return response(null, 204);

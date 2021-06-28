@@ -49,6 +49,11 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    public function collectRecords()
+    {
+        return $this->hasMany(UserCollectRecord::class, 'user_id');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
