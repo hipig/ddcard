@@ -16,9 +16,9 @@ class UserLearnRecordsController extends Controller
 
     }
 
-    public function store(Card $card)
+    public function store(Request $request, Card $card)
     {
-        $record = new UserLearnRecord();
+        $record = new UserLearnRecord($request->only('lang'));
         $record->user()->associate(Auth::user());
         $record->card()->associate($card);
         $record->group()->associate($card->group);
@@ -27,8 +27,12 @@ class UserLearnRecordsController extends Controller
         return UserLearnRecordResource::make($record);
     }
 
-    public function destroy(UserLearnRecord $record)
+    public function destroy(Request $request, Card $card)
     {
+        $record = Auth::user()->learnRecords()
+            ->where('card_id', $card->id)
+            ->where('lang', $request->lang)
+            ->first();
         $record->delete();
 
         return response(null, 204);

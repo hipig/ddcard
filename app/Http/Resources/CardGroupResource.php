@@ -14,6 +14,14 @@ class CardGroupResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'zh_name' => $this->zh_name,
+            'en_name' => $this->en_name,
+            'cover_url' => $this->cover_url,
+            'is_lock' => $this->is_lock,
+            'color' => $this->color,
+            'cards' => CardResource::collection($this->whenLoaded('cards')),
+        ];
     }
 }

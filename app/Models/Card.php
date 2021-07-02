@@ -68,6 +68,16 @@ class Card extends Model
         return $this->belongsTo(CardGroup::class, 'group_id');
     }
 
+    public function collectRecords()
+    {
+        return $this->hasMany(UserCollectRecord::class, 'card_id');
+    }
+
+    public function learnRecords()
+    {
+        return $this->hasMany(UserLearnRecord::class, 'card_id');
+    }
+
     public function getzhAudioPathUrlAttribute()
     {
         $path = $this->attributes['zh_audio_path'];

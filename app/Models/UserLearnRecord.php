@@ -9,6 +9,7 @@ class UserLearnRecord extends Model
     use HasFactory;
 
     protected $fillable = [
+        'lang',
         'user_id',
         'group_id',
         'card_id',

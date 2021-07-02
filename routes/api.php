@@ -34,7 +34,7 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
 
             // 学习记录
             Route::post('learn/{card}', [Api\UserLearnRecordsController::class, 'store'])->name('learn.store');
-            Route::delete('learn/{record}', [Api\UserLearnRecordsController::class, 'destroy'])->name('learn.destroy');
+            Route::delete('learn/{card}', [Api\UserLearnRecordsController::class, 'destroy'])->name('learn.destroy');
 
             // 收藏记录
             Route::get('collect', [Api\UserCollectRecordsController::class, 'index'])->name('collect.index');
