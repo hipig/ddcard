@@ -15,9 +15,9 @@ class CardResource extends JsonResource
      */
     public function toArray($request)
     {
-        $collectRecord = $this->collectRecords->where('user_id', Auth::id())->first();
-        $zhLearnRecord = $this->learnRecords->where('user_id', Auth::id())->where('lang', 'zh')->first();
-        $enLearnRecord = $this->learnRecords->where('user_id', Auth::id())->where('lang', 'en')->first();
+        $collectRecord = $this->collectRecords()->where('user_id', Auth::id())->first();
+        $zhLearnRecord = $this->learnRecords()->where('user_id', Auth::id())->where('lang', 'zh')->first();
+        $enLearnRecord = $this->learnRecords()->where('user_id', Auth::id())->where('lang', 'en')->first();
 
         return [
             'id' => $this->id,

@@ -69,6 +69,11 @@ class CardGroup extends Model
         return $this->hasMany(Card::class, 'group_id');
     }
 
+    public function learnRecords()
+    {
+        return $this->hasMany(UserLearnRecord::class, 'group_id');
+    }
+
     public function getCoverUrlAttribute()
     {
         $cover = $this->attributes['cover'];

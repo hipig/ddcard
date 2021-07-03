@@ -33,6 +33,7 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
         Route::prefix('records')->as('records.')->group(function () {
 
             // 学习记录
+            Route::get('learn', [Api\UserLearnRecordsController::class, 'index'])->name('learn.index');
             Route::post('learn/{card}', [Api\UserLearnRecordsController::class, 'store'])->name('learn.store');
             Route::delete('learn/{card}', [Api\UserLearnRecordsController::class, 'destroy'])->name('learn.destroy');
 

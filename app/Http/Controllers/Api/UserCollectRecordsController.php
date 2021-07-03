@@ -13,7 +13,7 @@ class UserCollectRecordsController extends Controller
 {
     public function index(Request $request)
     {
-        $records = UserCollectRecord::query()->get();
+        $records = UserCollectRecord::query()->with('card')->latest()->get();
 
         return UserCollectRecordResource::collection($records);
     }
