@@ -6,6 +6,7 @@ use App\Models\Traits\OrderIndexScope;
 use App\Models\Traits\StatusScope;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -72,6 +73,36 @@ class CardGroup extends Model
     public function learnRecords()
     {
         return $this->hasMany(UserLearnRecord::class, 'group_id');
+    }
+
+    public function unlockRecords()
+    {
+        return $this->hasMany(UserUnlockRecord::class, 'group_id');
+    }
+
+    public function isUnlock($user = null, $date = null)
+    {
+        $user = $user ?? Auth::user();
+        $date = $date ?? now()->format('y-m-d');
+
+        // todo::判断用户是否为 vip
+
+        return $this->unlockRecords()
+            ->where('user_id', $user->id)
+            ->whereDate('created_at', $date)
+            ->exists();
+    }
+
+    public function validateUnlockLimit($user = null)
+    {
+        $user = $user ?? Auth::user();
+
+        $count = $this->unlockRecords()
+            ->where('user_id', $user->id)
+            ->whereDate('created_at', now()->format('Y-m-d'))
+            ->count();
+
+        return $count <= 5;
     }
 
     public function getCoverUrlAttribute()

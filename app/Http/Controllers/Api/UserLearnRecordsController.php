@@ -28,11 +28,12 @@ class UserLearnRecordsController extends Controller
 
     public function store(Request $request, Card $card)
     {
-        $record = new UserLearnRecord($request->only('lang'));
-        $record->user()->associate(Auth::user());
-        $record->card()->associate($card);
-        $record->group()->associate($card->group);
-        $record->save();
+        $record = UserLearnRecord::firstOrCreate([
+            'lang' => $request->lang,
+            'user_id' => Auth::id(),
+            'card_id' => $card->id,
+            'group_id' => $card->group_id,
+        ]);
 
         return UserLearnRecordResource::make($record);
     }

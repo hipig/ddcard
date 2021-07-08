@@ -59,6 +59,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserLearnRecord::class, 'user_id');
     }
 
+    public function unlockRecords()
+    {
+        return $this->hasMany(UserUnlockRecord::class, 'user_id');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);

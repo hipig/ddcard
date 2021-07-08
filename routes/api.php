@@ -42,6 +42,13 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
             Route::post('collect/{card}', [Api\UserCollectRecordsController::class, 'store'])->name('collect.store');
             Route::delete('collect/{card}', [Api\UserCollectRecordsController::class, 'destroy'])->name('collect.destroy');
 
+            // 解锁记录
+            Route::post('unlock/{group}', [Api\UserUnlockRecordsController::class, 'store'])->name('unlock.store');
+
+            // 在线记录
+            Route::get('online', [Api\UserOnlineRecordsController::class, 'show'])->name('online.show');
+            Route::put('online', [Api\UserOnlineRecordsController::class, 'update'])->name('online.update');
+
         });
 
     });

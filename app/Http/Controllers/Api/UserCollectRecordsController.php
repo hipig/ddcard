@@ -20,11 +20,11 @@ class UserCollectRecordsController extends Controller
 
     public function store(Card $card)
     {
-        $record = new UserCollectRecord();
-        $record->user()->associate(Auth::user());
-        $record->card()->associate($card);
-        $record->group()->associate($card->group);
-        $record->save();
+        $record = UserCollectRecord::firstOrCreate([
+            'user_id' => Auth::id(),
+            'card_id' => $card->id,
+            'group_id' => $card->group_id,
+        ]);
 
         return UserCollectRecordResource::make($record);
     }

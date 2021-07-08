@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserOnlineRecordsTable extends Migration
+class CreateUserUnlockRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateUserOnlineRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_online_records', function (Blueprint $table) {
+        Schema::create('user_unlock_records', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->comment('用户ID');
-            $table->unsignedInteger('duration')->default(0)->comment('在线时长（分钟）');
-            $table->date('date')->comment('日期');
+            $table->unsignedBigInteger('group_id')->comment('卡片分组ID');
+            $table->timestamp('expired_at')->comment('到期时间');
             $table->timestamps();
-
-            $table->unique(['user_id', 'date']);
         });
     }
 
@@ -31,6 +29,6 @@ class CreateUserOnlineRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_online_records');
+        Schema::dropIfExists('user_unlock_records');
     }
 }
