@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\OrderIndexScope;
 use App\Models\Traits\StatusScope;
+use App\Settings\GeneralSettings;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
@@ -102,7 +103,7 @@ class CardGroup extends Model
             ->whereDate('created_at', now()->format('Y-m-d'))
             ->count();
 
-        return $count <= 5;
+        return $count <= app(GeneralSettings::class)->daily_unlock_times;
     }
 
     public function getCoverUrlAttribute()

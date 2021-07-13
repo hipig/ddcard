@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VipSettingsRequest extends FormRequest
+class GeneralSettingsRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,18 +14,14 @@ class VipSettingsRequest extends FormRequest
     public function rules()
     {
         return [
-            'price' => 'required|numeric|min:0',
-            'original_price' => 'required|numeric|min:0',
-            'duration' => 'required',
+            'daily_unlock_times' => 'required|numeric',
         ];
     }
 
     public function attributes()
     {
         return [
-            'price' => '售价',
-            'original_price' => '原价',
-            'duration' => '时长',
+            'daily_unlock_times' => '每日可解锁次数',
         ];
     }
 }

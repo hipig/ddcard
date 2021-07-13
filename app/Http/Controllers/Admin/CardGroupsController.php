@@ -55,13 +55,13 @@ class CardGroupsController extends Controller
         ]));
         $group->save();
 
-        return redirect()->route('admin.groups.index')->with('success', '修改卡片分组成功！');
+        return back()->with('success', '修改卡片分组成功！');
     }
 
     public function destroy(CardGroup $group)
     {
         $group->delete();
 
-        return redirect()->route('admin.groups.index')->with('success', '删除卡片分组成功！');
+        return back()->with('success', '删除卡片分组成功！');
     }
 }

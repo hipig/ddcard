@@ -68,7 +68,7 @@
                       <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="inline-block w-10 h-10 rounded-full" />
                       <div class="flex flex-col">
                         <h3 class="text-gray-900 text-base font-medium">{{ $user->name }}</h3>
-                        <p class="text-gray-500">男</p>
+                        <p class="text-gray-500"></p>
                       </div>
                     </div>
                   </td>

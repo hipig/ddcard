@@ -40,6 +40,7 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         Route::get('/', [Admin\HomeController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('users', Admin\UsersController::class)->except(['create', 'store', 'show']);
+        Route::resource('plans', Admin\PlansController::class)->names('plans')->except(['show']);
         Route::resource('card-groups', Admin\CardGroupsController::class)->names('groups')->except(['show'])->parameters([
             'card-groups' => 'group'
         ]);
@@ -47,8 +48,14 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         Route::post('cards/{card}/generate-audio', [Admin\CardsController::class, 'generateAudio'])->name('cards.generateAudio');
 
         Route::prefix('settings')->group(function () {
-            Route::get('vip', [Admin\SettingsController::class, 'editVip'])->name('settings.edit.vip');
-            Route::put('vip', [Admin\SettingsController::class, 'updateVip'])->name('settings.update.vip');
+            Route::get('general', [Admin\SettingsController::class, 'editGeneral'])->name('settings.edit.general');
+            Route::put('general', [Admin\SettingsController::class, 'updateGeneral'])->name('settings.update.general');
+        });
+
+        Route::prefix('records')->group(function () {
+            Route::get('unlock', [Admin\UserUnlockRecordsController::class, 'index'])->name('records.unlock');
+            Route::get('collect', [Admin\UserCollectRecordsController::class, 'index'])->name('records.collect');
+            Route::get('learn', [Admin\UserLearnRecordsController::class, 'index'])->name('records.learn');
         });
 
         Route::prefix('filepond')->group(function () {

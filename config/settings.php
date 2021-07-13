@@ -7,7 +7,7 @@ return [
      * put them (manually) here.
      */
     'settings' => [
-        \App\Settings\VipSettings::class,
+        \App\Settings\GeneralSettings::class,
     ],
 
     /*

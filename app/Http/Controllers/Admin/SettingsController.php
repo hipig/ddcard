@@ -3,26 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\VipSettingsRequest;
-use App\Settings\VipSettings;
+use App\Http\Requests\Admin\GeneralSettingsRequest;
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-    public function editVip(VipSettings $settings)
+    public function editGeneral(GeneralSettings $settings)
     {
-        return view('admin.settings.vip', compact('settings'));
+        return view('admin.settings.general', compact('settings'));
     }
 
-    public function updateVip(VipSettingsRequest $request, VipSettings $settings)
+    public function updateGeneral(GeneralSettingsRequest $request, GeneralSettings $settings)
     {
         $settings->fill($request->only([
-            'price',
-            'original_price',
-            'duration',
+            'daily_unlock_times',
         ]));
         $settings->save();
 
-        return back()->with('success', '修改会员设置成功！');
+        return back()->with('success', '修改基础设置成功！');
     }
 }

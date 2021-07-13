@@ -89,7 +89,7 @@
                   <span class="inline-block rounded w-5 h-5 {{ $colorMap[$group->color] }}" title="{{ $group->color }}"></span>
                 </td>
                 <td class="py-3 px-6 text-center">
-                  <a href="{{ route('admin.cards.index') . '?group_id=' . $group->id }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $group->cards_count }}</a>
+                  <a href="{{ route('admin.cards.index', ['group_id' => $group->id]) }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $group->cards_count }}</a>
                 </td>
                 <td class="py-3 px-6 text-center">
                   @if($group->is_lock == \App\Models\CardGroup::LOCK_STATUS_UNLOCK)

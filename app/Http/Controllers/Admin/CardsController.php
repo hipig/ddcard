@@ -73,14 +73,14 @@ class CardsController extends Controller
         ]));
         $card->save();
 
-        return redirect()->route('admin.cards.index')->with('success', '修改卡片成功！');
+        return back()->with('success', '修改卡片成功！');
     }
 
     public function destroy(Card $card)
     {
         $card->delete();
 
-        return redirect()->route('admin.cards.index')->with('success', '删除卡片成功！');
+        return back()->with('success', '删除卡片成功！');
     }
 
     public function generateAudio(GenerateAudioRequest $request, Card $card, XfyunTtsService $ttsService)

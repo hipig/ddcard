@@ -25,6 +25,9 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     Route::get('card-groups/{group}', [Api\CardGroupsController::class, 'show'])->name('cardGroups.show');
     Route::get('card-groups/{group}/preview', [Api\CardsController::class, 'preview'])->name('cards.preview');
 
+    // 会员方案
+    Route::get('plans', [Api\PlansController::class, 'index'])->name('plans.index');
+
     Route::middleware('refresh.token')->group(function () {
 
         // 个人资料
