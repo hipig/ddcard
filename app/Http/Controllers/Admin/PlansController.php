@@ -55,6 +55,7 @@ class PlansController extends Controller
             'status',
             'index',
         ]));
+        $plan->save();
 
         return back()->with('success', '修改会员方案成功！');
     }

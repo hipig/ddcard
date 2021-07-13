@@ -28,6 +28,9 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     // 会员方案
     Route::get('plans', [Api\PlansController::class, 'index'])->name('plans.index');
 
+    // 支付
+    Route::post('payment/wechat/notify', [Api\PaymentController::class, 'wechatNotify'])->name('payment.wechat.notify');
+
     Route::middleware('refresh.token')->group(function () {
 
         // 个人资料
@@ -51,6 +54,9 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
             // 在线记录
             Route::get('online', [Api\UserOnlineRecordsController::class, 'show'])->name('online.show');
             Route::put('online', [Api\UserOnlineRecordsController::class, 'update'])->name('online.update');
+
+            // 会员订阅
+            Route::post('subscription/{plan}', [Api\UserSubscriptionRecordController::class, 'store'])->name('subscription.store');
 
         });
 

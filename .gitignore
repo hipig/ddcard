@@ -4,6 +4,7 @@
 /public/storage
 /public/uploads
 /storage/*.key
+/storage/wechat_pay
 /vendor
 .env
 .env.backup

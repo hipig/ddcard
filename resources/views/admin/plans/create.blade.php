@@ -25,7 +25,10 @@
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="price" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">价格</label>
-          <input type="text" id="price" name="price" value="{{ old('price') }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入价格" />
+          <div class="md:w-3/5 relative">
+              <div class="absolute inset-y-0 left-0 w-10 my-px ml-px flex items-center justify-center pointer-events-none rounded-l text-gray-500">￥</div>
+              <input type="text" id="price" name="price" value="{{ old('price') }}" class="block border border-gray-200 rounded pl-10 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入价格" />
+          </div>
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-baseline">
           <label for="period" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">时长</label>
