@@ -28,8 +28,13 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     // 会员方案
     Route::get('plans', [Api\PlansController::class, 'index'])->name('plans.index');
 
-    // 支付
+    // 支付回调
     Route::post('payment/wechat/notify', [Api\PaymentController::class, 'wechatNotify'])->name('payment.wechat.notify');
+
+    // 校验 vip 状态
+    Route::get('validations/user-is-vip', [Api\ValidationsController::class, 'userIsVip'])->name('validations.userIsVip');
+    // 校验卡组能否学习
+    Route::get('validations/group-can-learn/{group}', [Api\ValidationsController::class, 'groupCanLearn'])->name('validations.groupCanLearn');
 
     Route::middleware('refresh.token')->group(function () {
 

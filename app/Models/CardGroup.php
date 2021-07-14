@@ -86,11 +86,9 @@ class CardGroup extends Model
         $user = $user ?? Auth::user();
         $date = $date ?? now()->format('y-m-d');
 
-        // todo::判断用户是否为 vip
-
-        return $this->unlockRecords()
+        return $user->is_vip > 0 || $this->unlockRecords()
             ->where('user_id', $user->id)
-            ->whereDate('created_at', $date)
+            ->where('expired_at', '>', $date)
             ->exists();
     }
 

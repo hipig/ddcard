@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use DateTimeInterface;
 use EloquentFilter\Filterable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -47,6 +48,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'vip_expired_at' => 'datetime',
     ];
 
     public function collectRecords()
@@ -62,6 +64,36 @@ class User extends Authenticatable implements JWTSubject
     public function unlockRecords()
     {
         return $this->hasMany(UserUnlockRecord::class, 'user_id');
+    }
+
+    public function renew($period, $interval)
+    {
+        if ($period === Plan::INFINITE_VALUE) {
+            $endAt = new Carbon(Plan::INFINITE_TIME);
+        } else {
+            $expiredAt = $this->vip_expired_at;
+            $startAt = now() > $expiredAt ? now() : $expiredAt;
+
+            $method = 'add'.ucfirst($interval).'s';
+            $endAt = $startAt->{$method}($period);
+        }
+
+        $this->attributes['vip_expired_at'] = $endAt;
+        $this->save();
+    }
+
+    public function getIsVipAttribute()
+    {
+        $isVip = -1;
+        if ($this->getAttribute('vip_expired_at') > now()) {
+            $isVip = 1;
+        }
+
+        if ($this->getAttribute('vip_expired_at') === Plan::INFINITE_TIME) {
+            $isVip = 2;
+        }
+
+        return $isVip;
     }
 
     public function setPasswordAttribute($value)

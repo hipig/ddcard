@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\UserSubscriptionRecord;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,8 +12,9 @@ class PaymentController extends Controller
 {
     public function wechatNotify()
     {
-        $response = app('wechat.pay')->handlePaidNotify(function ($message, $fail) {
+        return app('wechat.pay')->handlePaidNotify(function ($message, $fail) {
             // 找到对应的记录
+            $user = User::query()->where('weapp_openid', $message['openid'])->first();
             $record = UserSubscriptionRecord::query()->where('no', $message['out_trade_no'])->first();
             // 不存在则告知微信支付
             if (!$record) {
@@ -29,10 +31,10 @@ class PaymentController extends Controller
                 'paid_at'        => Carbon::now(),
                 'payment_no'     => $message['transaction_id'],
             ]);
+            // 会员续期
+            $user->renew($record->period, $record->interval);
 
             return true;
         });
-
-        return $response;
     }
 }

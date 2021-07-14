@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('密码');
             $table->string('weapp_openid')->nullable()->unique()->comment('小程序 openid');
             $table->string('weixin_session_key')->nullable()->comment('微信 session key');
+            $table->dateTime('vip_expired_at')->nullable()->comment('会员到期时间');
             $table->rememberToken();
             $table->timestamps();
         });

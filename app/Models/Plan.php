@@ -34,6 +34,9 @@ class Plan extends Model
         self::STATUS_DISABLE => '禁用',
     ];
 
+    const INFINITE_VALUE = -1;
+    const INFINITE_TIME = '9999-12-31 23:59:59';
+
 
     protected $fillable = [
         'name',
@@ -50,6 +53,12 @@ class Plan extends Model
         'price' => 'float',
         'status' => 'boolean',
     ];
+
+    // 是否永久
+    public function isInfinite()
+    {
+        return $this->getAttribute('period') === self::INFINITE_VALUE;
+    }
 
     public function getIntervalTextAttribute()
     {
