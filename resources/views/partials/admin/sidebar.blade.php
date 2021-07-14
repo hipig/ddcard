@@ -49,7 +49,7 @@
         <x-sidebar.item label="卡片分组" icon="heroicon-o-folder-open" href="{{ route('admin.groups.index') }}" :active="if_route_pattern('admin.groups.*')"></x-sidebar.item>
         <x-sidebar.item label="卡片" icon="heroicon-o-clipboard-list" href="{{ route('admin.cards.index') }}" :active="if_route_pattern('admin.cards.*')"></x-sidebar.item>
         <x-sidebar.item label="统计报告" icon="heroicon-o-chart-square-bar" :active="if_route_pattern('admin.records.*')">
-          <x-sidebar.subitem label="会员订阅"></x-sidebar.subitem>
+          <x-sidebar.subitem label="会员订阅" href="{{ route('admin.records.subscription') }}" :active="if_route('admin.records.subscription')"></x-sidebar.subitem>
           <x-sidebar.subitem label="卡组解锁" href="{{ route('admin.records.unlock') }}" :active="if_route('admin.records.unlock')"></x-sidebar.subitem>
           <x-sidebar.subitem label="收藏记录" href="{{ route('admin.records.collect') }}" :active="if_route('admin.records.collect')"></x-sidebar.subitem>
           <x-sidebar.subitem label="在线时长"></x-sidebar.subitem>

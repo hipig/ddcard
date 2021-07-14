@@ -56,6 +56,7 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
             Route::get('unlock', [Admin\UserUnlockRecordsController::class, 'index'])->name('records.unlock');
             Route::get('collect', [Admin\UserCollectRecordsController::class, 'index'])->name('records.collect');
             Route::get('learn', [Admin\UserLearnRecordsController::class, 'index'])->name('records.learn');
+            Route::get('subscription', [Admin\UserSubscriptionRecordsController::class, 'index'])->name('records.subscription');
         });
 
         Route::prefix('filepond')->group(function () {

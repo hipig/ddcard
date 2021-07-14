@@ -58,7 +58,7 @@
                   <span class="text-red-600">￥{{ $plan->price }}</span>
                 </td>
                 <td class="py-3 px-6 text-center">
-                  @if($plan->period === -1)
+                  @if($plan->period === \App\Models\Plan::INFINITE_VALUE)
                     <span class="inline-flex items-center rounded-full py-1 px-2.5 text-sm leading-none text-yellow-800 bg-yellow-100">永久</span>
                   @else
                     <span class="font-semibold">{{ $plan->period }}</span>

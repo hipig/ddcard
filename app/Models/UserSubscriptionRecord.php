@@ -2,11 +2,21 @@
 
 namespace App\Models;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UserSubscriptionRecord extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
+
+    const INTERVAL_DAY = 'day';
+    const INTERVAL_MONTH = 'month';
+    const INTERVAL_YEAR = 'year';
+    public static $intervalMap = [
+        self::INTERVAL_DAY => '天',
+        self::INTERVAL_MONTH => '个月',
+        self::INTERVAL_YEAR => '年',
+    ];
 
     protected $fillable = [
         'no',
@@ -65,5 +75,10 @@ class UserSubscriptionRecord extends Model
         \Log::warning('find order no failed');
 
         return false;
+    }
+
+    public function getIntervalTextAttribute()
+    {
+        return self::$intervalMap[$this->getAttribute('interval')] ?? '未知周期';
     }
 }
