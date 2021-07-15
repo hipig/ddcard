@@ -59,6 +59,9 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
             Route::get('subscription', [Admin\UserSubscriptionRecordsController::class, 'index'])->name('records.subscription');
         });
 
+        Route::resource('feedback', Admin\FeedbackController::class)->only(['index', 'destroy']);
+        Route::post('feedback/{feedback}/replies', [Admin\FeedbackController::class, 'storeReply'])->name('feedback.storeReply');
+
         Route::prefix('filepond')->group(function () {
             Route::post('process', [Admin\FilepondUploadsController::class, 'process'])->name('filepond.process');
             Route::get('load', [Admin\FilepondUploadsController::class, 'load'])->name('filepond.load');

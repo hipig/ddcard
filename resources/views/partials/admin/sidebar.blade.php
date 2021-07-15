@@ -57,7 +57,7 @@
         </x-sidebar.item>
       </x-sidebar.group>
       <x-sidebar.group label="其他">
-        <x-sidebar.item label="留言反馈" icon="heroicon-o-chat-alt"></x-sidebar.item>
+        <x-sidebar.item label="留言反馈" icon="heroicon-o-chat-alt" href="{{ route('admin.feedback.index') }}" :active="if_route_pattern('admin.feedback.*')"></x-sidebar.item>
         <x-sidebar.item label="关于我们" icon="heroicon-o-exclamation-circle"></x-sidebar.item>
       </x-sidebar.group>
     </x-sidebar.menu>

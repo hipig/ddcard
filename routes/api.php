@@ -65,6 +65,11 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
 
         });
 
+        // 留言反馈
+        Route::get('feedback', [Api\FeedbackController::class, 'index'])->name('feedback.index');
+        Route::post('feedback', [Api\FeedbackController::class, 'store'])->name('feedback.store');
+        Route::put('feedback/view-reply', [Api\FeedbackController::class, 'viewReply'])->name('feedback.viewReply');
+
     });
 
 });

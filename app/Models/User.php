@@ -66,6 +66,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserUnlockRecord::class, 'user_id');
     }
 
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class, 'user_id');
+    }
+
+    public function feedbackReplies()
+    {
+        return $this->hasMany(FeedbackReply::class, 'to_user_id');
+    }
+
     public function renew($period, $interval)
     {
         if ($period === Plan::INFINITE_VALUE) {
