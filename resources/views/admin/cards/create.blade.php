@@ -85,7 +85,7 @@
           <div class="w-full md:w-3/5 space-x-6">
             @foreach(\App\Models\Card::$statusMap as $key => $value)
               <label class="inline-flex items-center space-x-2">
-                <input id="is_lock" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('status', \App\Models\CardGroup::STATUS_ENABLE) == $key ? 'checked' : '' }}>
+                <input id="status" type="radio" name="status" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('status', \App\Models\CardGroup::STATUS_ENABLE) == $key ? 'checked' : '' }}>
                 <span>{{ $value }}</span>
               </label>
             @endforeach

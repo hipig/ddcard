@@ -21,3 +21,9 @@ mix.js('resources/vendor/filepond/filepond.js', 'public/vendor/filepond')
   .postCss('resources/vendor/filepond/filepond.css', 'public/vendor/filepond', [
     require("tailwindcss"),
   ]);
+
+// quill
+mix.js('resources/vendor/quill/quill.js', 'public/vendor/quill')
+  .postCss('resources/vendor/quill/quill.css', 'public/vendor/quill', [
+    require("tailwindcss"),
+  ]);

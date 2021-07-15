@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '卡片添加')
+@section('title', '卡片编辑')
 
 @section('breadcrumb')
   <x-breadcrumb.list>

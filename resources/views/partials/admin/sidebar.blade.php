@@ -40,8 +40,8 @@
         <x-sidebar.item label="系统设置" icon="heroicon-o-cog" :active="if_route_pattern('admin.settings.*')">
           <x-sidebar.subitem label="基础" href="{{ route('admin.settings.edit.general') }}" :active="if_route('admin.settings.edit.general')"></x-sidebar.subitem>
         </x-sidebar.item>
-        <x-sidebar.item label="管理员" icon="heroicon-o-shield-check"></x-sidebar.item>
-        <x-sidebar.item label="角色" icon="heroicon-o-lock-closed"></x-sidebar.item>
+{{--        <x-sidebar.item label="管理员" icon="heroicon-o-shield-check"></x-sidebar.item>--}}
+{{--        <x-sidebar.item label="角色" icon="heroicon-o-lock-closed"></x-sidebar.item>--}}
         <x-sidebar.item label="用户" icon="heroicon-o-user" href="{{ route('admin.users.index') }}" :active="if_route_pattern('admin.users.*')"></x-sidebar.item>
         <x-sidebar.item label="会员方案" icon="heroicon-o-server" href="{{ route('admin.plans.index') }}" :active="if_route_pattern('admin.plans.*')"></x-sidebar.item>
       </x-sidebar.group>
@@ -58,7 +58,7 @@
       </x-sidebar.group>
       <x-sidebar.group label="其他">
         <x-sidebar.item label="留言反馈" icon="heroicon-o-chat-alt" href="{{ route('admin.feedback.index') }}" :active="if_route_pattern('admin.feedback.*')"></x-sidebar.item>
-        <x-sidebar.item label="关于我们" icon="heroicon-o-exclamation-circle"></x-sidebar.item>
+        <x-sidebar.item label="关于我们" icon="heroicon-o-exclamation-circle" href="{{ route('admin.abouts.index') }}" :active="if_route_pattern('admin.abouts.*')"></x-sidebar.item>
       </x-sidebar.group>
     </x-sidebar.menu>
   </div>
