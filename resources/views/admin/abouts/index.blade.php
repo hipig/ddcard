@@ -44,7 +44,6 @@
           <tr class="text-gray-700 bg-gray-50 font-semibold">
             <th class="py-3 px-6 text-left">名称</th>
             <th class="py-3 px-6">标识</th>
-            <th class="py-3 px-6">主要内容</th>
             <th class="py-3 px-6">状态</th>
             <th class="py-3 px-6">创建时间</th>
             <th class="py-3 px-6">操作</th>
@@ -60,9 +59,6 @@
                 </td>
                 <td class="py-3 px-6 text-center">
                   <span class="text-gray-500">{{ $about->key }}</span>
-                </td>
-                <td class="py-3 px-6 text-center">
-                  <a href="javascript:;" class="text-indigo-600 hover:text-indigo-700 hover:underline">点击查看</a>
                 </td>
                 <td class="py-3 px-6 text-center">
                   @if($about->status)
@@ -88,7 +84,7 @@
             @endforeach
           @else
             <tr class="border-t border-gray-100">
-              <td class="py-6 px-6 text-center text-gray-500" colspan="7">暂无数据。</td>
+              <td class="py-6 px-6 text-center text-gray-500" colspan="5">暂无数据。</td>
             </tr>
           @endif
           </tbody>

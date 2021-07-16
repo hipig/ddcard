@@ -28,28 +28,10 @@
           <label for="key" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">标识</label>
           <input type="text" id="key" name="key" value="{{ old('key', $about->key) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入标识" />
         </div>
-        <div class="space-y-1 md:space-y-0 md:flex md:items-baseline" x-data="{content: `{{ old('content', $about->content) }}`}" x-init="quill = new Quill($refs.quillEditor, {
-            modules: {
-              toolbar: {
-                container: [
-                  [{ 'size': ['small', false, 'large', 'huge'] }],
-                  [{'header': 2}, {'header': 3}],
-                  ['bold', 'italic', 'underline', 'strike'],
-                  ['link', 'blockquote', 'code-block', 'image'],
-                  [{ list: 'ordered' }, { list: 'bullet' }, { 'align': [false, 'center', 'right', 'justify']}]
-                ]
-              }
-            },
-            theme: 'snow',
-            scrollingContainer: 'html, body',
-            placeholder: '请输入内容'
-          })
-          quill.on('text-change', function () {
-            content = quill.getText() ? quill.root.innerHTML : ''
-          })">
+        <div class="space-y-1 md:space-y-0 md:flex md:items-baseline" x-data="quillEditor(`{{ old('content', $about->content) }}`)" x-init="init()">
           <label for="content" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">主要内容</label>
           <div class="md:w-3/5">
-            <input type="hidden" id="content" name="content" :value="content">
+            <input type="hidden" id="content" name="content" x-model.debounce="content">
             <div x-ref="quillEditor" class="bg-white">
               {!! old('content', $about->content) !!}
             </div>
@@ -85,4 +67,37 @@
 
 @push('beforeScripts')
   <script src="{{ mix('vendor/quill/quill.js') }}"></script>
+@endpush
+
+@push('scripts')
+  <script>
+    function quillEditor(content) {
+      return {
+        content: content,
+
+        init() {
+          let that = this
+          quill = new Quill(this.$refs.quillEditor, {
+            modules: {
+              toolbar: {
+                container: [
+                  [{ 'size': ['small', false, 'large', 'huge'] }],
+                  [{'header': 2}, {'header': 3}],
+                  ['bold', 'italic', 'underline', 'strike'],
+                  ['link', 'blockquote', 'code-block', 'image'],
+                  [{ list: 'ordered' }, { list: 'bullet' }, { 'align': [false, 'center', 'right', 'justify']}]
+                ]
+              }
+            },
+            theme: 'snow',
+            scrollingContainer: 'html, body',
+            placeholder: '请输入内容'
+          })
+          quill.on('text-change', function () {
+            that.content = quill.getText() ? quill.root.innerHTML : ''
+          })
+        }
+      }
+    }
+  </script>
 @endpush
