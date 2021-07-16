@@ -56,6 +56,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserCollectRecord::class, 'user_id');
     }
 
+    public function collectCards()
+    {
+        return $this->belongsToMany(Card::class, 'user_collect_records', 'user_id', 'card_id');
+    }
+
     public function learnRecords()
     {
         return $this->hasMany(UserLearnRecord::class, 'user_id');

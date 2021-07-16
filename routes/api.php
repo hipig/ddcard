@@ -36,6 +36,9 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     // 校验卡组能否学习
     Route::get('validations/group-can-learn/{group}', [Api\ValidationsController::class, 'groupCanLearn'])->name('validations.groupCanLearn');
 
+    // 关于我们
+    Route::get('abouts/{about:key}', [Api\AboutsController::class, 'show'])->name('abouts.show');
+
     Route::middleware('refresh.token')->group(function () {
 
         // 个人资料

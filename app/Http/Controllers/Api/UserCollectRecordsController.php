@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CardResource;
 use App\Http\Resources\UserCollectRecordResource;
 use App\Models\Card;
 use App\Models\CardGroup;
@@ -15,9 +16,9 @@ class UserCollectRecordsController extends Controller
 {
     public function index(Request $request)
     {
-        $records = UserCollectRecord::query()->with('card')->latest()->get();
+        $cards = Auth::user()->collectCards()->latest()->get();
 
-        return UserCollectRecordResource::collection($records);
+        return CardResource::collection($cards);
     }
 
     public function store(Card $card)
