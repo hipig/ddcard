@@ -39,6 +39,23 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     // 关于我们
     Route::get('abouts/{about:key}', [Api\AboutsController::class, 'show'])->name('abouts.show');
 
+    // 不需要登录的记录
+    Route::prefix('records')->as('records.')->group(function () {
+
+        // 在线记录
+        Route::post('online', [Api\UserOnlineRecordsController::class, 'store'])->name('online.store');
+        Route::put('online/{record}', [Api\UserOnlineRecordsController::class, 'update'])->name('online.update');
+
+        // 学习记录
+        Route::get('learn', [Api\UserLearnRecordsController::class, 'index'])->name('learn.index');
+
+        // 收藏记录
+        Route::get('collect', [Api\UserCollectRecordsController::class, 'index'])->name('collect.index');
+
+    });
+
+
+
     Route::middleware('refresh.token')->group(function () {
 
         // 个人资料
@@ -47,21 +64,14 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
         Route::prefix('records')->as('records.')->group(function () {
 
             // 学习记录
-            Route::get('learn', [Api\UserLearnRecordsController::class, 'index'])->name('learn.index');
             Route::post('learn/{card}', [Api\UserLearnRecordsController::class, 'store'])->name('learn.store');
             Route::delete('learn/{card}', [Api\UserLearnRecordsController::class, 'destroy'])->name('learn.destroy');
 
-            // 收藏记录
-            Route::get('collect', [Api\UserCollectRecordsController::class, 'index'])->name('collect.index');
             Route::post('collect/{card}', [Api\UserCollectRecordsController::class, 'store'])->name('collect.store');
             Route::delete('collect/{card}', [Api\UserCollectRecordsController::class, 'destroy'])->name('collect.destroy');
 
             // 解锁记录
             Route::post('unlock/{group}', [Api\UserUnlockRecordsController::class, 'store'])->name('unlock.store');
-
-            // 在线记录
-            Route::get('online', [Api\UserOnlineRecordsController::class, 'show'])->name('online.show');
-            Route::put('online', [Api\UserOnlineRecordsController::class, 'update'])->name('online.update');
 
             // 会员订阅
             Route::post('subscription/{plan}', [Api\UserSubscriptionRecordController::class, 'store'])->name('subscription.store');

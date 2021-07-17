@@ -55,11 +55,10 @@
             @foreach($records as $record)
               <tr class="border-t border-gray-100">
                 <td class="py-3 px-6">
-                  <div class="flex items-center space-x-4">
-                    <img src="{{ $record->user->avatar }}" alt="{{ $record->user->name }}" class="inline-block w-10 h-10 rounded-full" />
+                  <div class="flex items-center space-x-3">
+                    <img src="{{ $record->user->avatar }}" alt="{{ $record->user->name }}" class="inline-block w-8 h-8 rounded-full" />
                     <div class="flex flex-col">
                       <h3 class="text-gray-900 text-base font-medium">{{ $record->user->name }}</h3>
-                      <p class="text-gray-500"></p>
                     </div>
                   </div>
                 </td>

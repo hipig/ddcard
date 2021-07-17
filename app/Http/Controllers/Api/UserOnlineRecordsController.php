@@ -12,30 +12,26 @@ use Illuminate\Support\Facades\Log;
 
 class UserOnlineRecordsController extends Controller
 {
-    public function update(Request $request)
+    public function store(Request $request)
+    {
+        $method = Auth::check() ? 'firstOrCreate' : 'create';
+        $record = UserOnlineRecord::$method([
+            'user_id' => Auth::id() ?? 0,
+            'date' => now()->format('Y-m-d')
+        ]);
+
+        return UserOnlineRecordResource::make($record->append('cumulative_times'));
+    }
+
+    public function update(Request $request, UserOnlineRecord $record)
     {
         $startedAt = $request->started_at;
         $endedAt = now();
-        $record = UserOnlineRecord::firstOrCreate([
-            'user_id' => Auth::id(),
-            'date' => now()->format('Y-m-d')
-        ]);
-
-        $diffMinutes = Carbon::parse($startedAt)->diffInMinutes(Carbon::parse($endedAt));
-        $record->increment('duration', $diffMinutes);
+        $diffInSeconds = Carbon::parse($startedAt)->diffInSeconds(Carbon::parse($endedAt));
+        $record->increment('duration', ($diffInSeconds % 60) > 30 ? ($diffInSeconds / 60) + 1 : $diffInSeconds / 60);
         $record->items()->create([
             'started_at' => $startedAt,
             'ended_at' => $endedAt,
-        ]);
-
-        return UserOnlineRecordResource::make($record);
-    }
-
-    public function show(Request $request)
-    {
-        $record = UserOnlineRecord::firstOrCreate([
-            'user_id' => Auth::id(),
-            'date' => now()->format('Y-m-d')
         ]);
 
         return UserOnlineRecordResource::make($record);

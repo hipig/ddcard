@@ -14,6 +14,11 @@ class UserCollectRecordResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'card_id' => $this->card_id,
+            'card' => CardResource::make($this->whenLoaded('card'))
+        ];
     }
 }

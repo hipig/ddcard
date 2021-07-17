@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class UserOnlineRecord extends Model
 {
@@ -21,5 +22,10 @@ class UserOnlineRecord extends Model
     public function items()
     {
         return $this->hasMany(UserOnlineRecordItem::class, 'record_id');
+    }
+
+    public function getCumulativeTimesAttribute($key)
+    {
+        return Auth::check() ? static::query()->where('user_id', Auth::id())->count() : 1;
     }
 }

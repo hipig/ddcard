@@ -19,8 +19,6 @@ class CreateUserOnlineRecordsTable extends Migration
             $table->unsignedInteger('duration')->default(0)->comment('在线时长（分钟）');
             $table->date('date')->comment('日期');
             $table->timestamps();
-
-            $table->unique(['user_id', 'date']);
         });
     }
 

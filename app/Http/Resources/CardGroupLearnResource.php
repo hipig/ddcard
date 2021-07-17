@@ -16,8 +16,8 @@ class CardGroupLearnResource extends JsonResource
     public function toArray($request)
     {
         $count = $this->cards()->count();
-        $zhLearnCount = $this->learnRecords()->where('user_id', Auth::id())->where('lang', 'zh')->count();
-        $enLearnCount = $this->learnRecords()->where('user_id', Auth::id())->where('lang', 'en')->count();
+        $zhLearnCount = $this->learnRecords()->where('user_id', Auth::id() ?? 0)->where('lang', 'zh')->count();
+        $enLearnCount = $this->learnRecords()->where('user_id', Auth::id() ?? 0)->where('lang', 'en')->count();
 
         return [
             'id' => $this->id,
