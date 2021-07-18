@@ -14,6 +14,11 @@ class UserSubscriptionRecordFilter extends ModelFilter
     */
     public $relations = [];
 
+    public function user($user)
+    {
+        return $this->where('user_id', $user);
+    }
+
     public function plan($plan)
     {
         return $this->where('plan_id', $plan);

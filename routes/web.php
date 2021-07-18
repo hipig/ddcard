@@ -57,12 +57,16 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
             Route::get('collect', [Admin\UserCollectRecordsController::class, 'index'])->name('records.collect');
             Route::get('learn', [Admin\UserLearnRecordsController::class, 'index'])->name('records.learn');
             Route::get('subscription', [Admin\UserSubscriptionRecordsController::class, 'index'])->name('records.subscription');
+            Route::get('online', [Admin\UserOnlineRecordsController::class, 'index'])->name('records.online');
+            Route::get('online/{record}/items', [Admin\UserOnlineRecordsController::class, 'showItems'])->name('records.online.showItems');
         });
 
         Route::resource('feedback', Admin\FeedbackController::class)->only(['index', 'destroy']);
+        Route::get('feedback/{feedback}/replies', [Admin\FeedbackController::class, 'showReplies'])->name('feedback.showReplies');
         Route::post('feedback/{feedback}/replies', [Admin\FeedbackController::class, 'storeReply'])->name('feedback.storeReply');
 
         Route::resource('abouts', Admin\AboutsController::class)->except(['show']);
+        Route::get('abouts/{about}/content', [Admin\AboutsController::class, 'showContent'])->name('abouts.showContent');
 
         Route::prefix('filepond')->group(function () {
             Route::post('process', [Admin\FilepondUploadsController::class, 'process'])->name('filepond.process');

@@ -4,7 +4,7 @@ namespace App\ModelFilters\Admin;
 
 use EloquentFilter\ModelFilter;
 
-class UserUnlockRecordFilter extends ModelFilter
+class UserOnlineRecordFilter extends ModelFilter
 {
     /**
     * Related Models that have ModelFilters as well as the method on the ModelFilter
@@ -19,8 +19,8 @@ class UserUnlockRecordFilter extends ModelFilter
         return $this->where('user_id', $user);
     }
 
-    public function group($group)
+    public function isShowAnonymous($isShow)
     {
-        return $this->where('group_id', $group);
+        return $isShow == 1 ?: $this->whereNotNull('user_id');
     }
 }

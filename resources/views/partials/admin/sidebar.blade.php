@@ -52,7 +52,7 @@
           <x-sidebar.subitem label="会员订阅" href="{{ route('admin.records.subscription') }}" :active="if_route('admin.records.subscription')"></x-sidebar.subitem>
           <x-sidebar.subitem label="卡组解锁" href="{{ route('admin.records.unlock') }}" :active="if_route('admin.records.unlock')"></x-sidebar.subitem>
           <x-sidebar.subitem label="收藏记录" href="{{ route('admin.records.collect') }}" :active="if_route('admin.records.collect')"></x-sidebar.subitem>
-          <x-sidebar.subitem label="在线时长"></x-sidebar.subitem>
+          <x-sidebar.subitem label="在线时长" href="{{ route('admin.records.online') }}" :active="if_route('admin.records.online')"></x-sidebar.subitem>
           <x-sidebar.subitem label="卡片学习记录" href="{{ route('admin.records.learn') }}" :active="if_route('admin.records.learn')"></x-sidebar.subitem>
         </x-sidebar.item>
       </x-sidebar.group>

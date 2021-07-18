@@ -16,7 +16,7 @@ class UserOnlineRecordsController extends Controller
     {
         $method = Auth::check() ? 'firstOrCreate' : 'create';
         $record = UserOnlineRecord::$method([
-            'user_id' => Auth::id() ?? 0,
+            'user_id' => Auth::id(),
             'date' => now()->format('Y-m-d')
         ]);
 

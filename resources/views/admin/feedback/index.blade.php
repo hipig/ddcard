@@ -32,6 +32,7 @@
           <tr class="text-gray-700 bg-gray-50 font-semibold">
             <th class="py-3 px-6 text-left">用户</th>
             <th class="py-3 px-6">内容</th>
+            <th class="py-3 px-6">回复内容</th>
             <th class="py-3 px-6">反馈时间</th>
             <th class="py-3 px-6">操作</th>
           </tr>
@@ -51,6 +52,9 @@
                 </td>
                 <td class="py-3 px-6 text-center">
                   <span class="text-gray-700">{{ $item->content }}</span>
+                </td>
+                <td class="py-3 px-6 text-center">
+                  <a href="javascript:;" x-on:click="$dispatch('init-dialog-list', { open: true, action: `{{ route('admin.feedback.showReplies', $item) }}` })" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">回复列表</a>
                 </td>
                 <td class="py-3 px-6 text-center">
                   <span class="text-gray-500">{{ $item->created_at }}</span>
@@ -80,6 +84,7 @@
       </div>
     </div>
   </div>
+  <x-dialog.list title="回复列表"></x-dialog.list>
   <x-dialog.form title="添加回复">
     <div class="space-y-4">
       <div class="space-y-1">

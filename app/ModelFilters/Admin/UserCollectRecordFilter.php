@@ -14,6 +14,11 @@ class UserCollectRecordFilter extends ModelFilter
     */
     public $relations = [];
 
+    public function user($user)
+    {
+        return $this->where('user_id', $user);
+    }
+
     public function card($card)
     {
         return $this->where('card_id', $card);

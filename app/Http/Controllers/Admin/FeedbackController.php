@@ -33,4 +33,11 @@ class FeedbackController extends Controller
 
         return back()->with('success', '删除反馈成功！');
     }
+
+    public function showReplies(Feedback $feedback)
+    {
+        $replies = $feedback->replies()->latest()->get();
+
+        return view('admin.feedback.show-replies', compact('replies'));
+    }
 }

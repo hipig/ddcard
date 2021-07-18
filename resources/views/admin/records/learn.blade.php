@@ -5,7 +5,8 @@
   <x-breadcrumb.list>
     <x-breadcrumb.item href="{{ route('admin.dashboard') }}">仪表盘</x-breadcrumb.item>
     <x-breadcrumb.item href="javascript:;">统计报告</x-breadcrumb.item>
-    <x-breadcrumb.item>卡片学习记录</x-breadcrumb.item>
+    <x-breadcrumb.item href="{{ route('admin.records.learn') }}">卡片学习记录</x-breadcrumb.item>
+    <x-breadcrumb.item>列表</x-breadcrumb.item>
   </x-breadcrumb.list>
 @endsection
 

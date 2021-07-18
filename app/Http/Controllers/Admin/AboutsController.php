@@ -58,4 +58,9 @@ class AboutsController extends Controller
 
         return back()->with('success', '删除内容成功！');
     }
+
+    public function showContent(Request $request, About $about)
+    {
+        return view('admin.abouts.show-content', compact('about'));
+    }
 }

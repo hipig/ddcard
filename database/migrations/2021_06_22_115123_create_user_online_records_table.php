@@ -15,7 +15,7 @@ class CreateUserOnlineRecordsTable extends Migration
     {
         Schema::create('user_online_records', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->comment('用户ID');
+            $table->unsignedBigInteger('user_id')->nullable()->comment('用户ID');
             $table->unsignedInteger('duration')->default(0)->comment('在线时长（分钟）');
             $table->date('date')->comment('日期');
             $table->timestamps();

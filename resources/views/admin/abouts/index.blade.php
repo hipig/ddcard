@@ -44,6 +44,7 @@
           <tr class="text-gray-700 bg-gray-50 font-semibold">
             <th class="py-3 px-6 text-left">名称</th>
             <th class="py-3 px-6">标识</th>
+            <th class="py-3 px-6">内容</th>
             <th class="py-3 px-6">状态</th>
             <th class="py-3 px-6">创建时间</th>
             <th class="py-3 px-6">操作</th>
@@ -59,6 +60,9 @@
                 </td>
                 <td class="py-3 px-6 text-center">
                   <span class="text-gray-500">{{ $about->key }}</span>
+                </td>
+                <td class="py-3 px-6 text-center">
+                  <a href="javascript:;" x-on:click="$dispatch('init-dialog-list', { open: true, action: `{{ route('admin.abouts.showContent', $about) }}` })" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">查看内容</a>
                 </td>
                 <td class="py-3 px-6 text-center">
                   @if($about->status)
@@ -95,6 +99,7 @@
       </div>
     </div>
   </div>
+  <x-dialog.list title="查看内容"></x-dialog.list>
   <x-dialog.confirm-delete>
     <p class="text-gray-600">是否删除该内容？</p>
   </x-dialog.confirm-delete>
