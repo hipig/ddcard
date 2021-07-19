@@ -107,7 +107,11 @@ class CardGroup extends Model
     public function getCoverUrlAttribute()
     {
         $cover = $this->attributes['cover'];
-        if(!$cover || Str::startsWith($cover,['http://','https://'])){
+        if (!$cover) {
+            $firstCard = $this->cards()->status()->orderIndex()->latest()->first();
+            return $firstCard->cover_url;
+        }
+        if(Str::startsWith($cover,['http://','https://'])){
             return $cover;
         }
         return Storage::disk('upload')->url($cover);

@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -39,19 +40,27 @@ class GenerateAudio implements ShouldQueue
     public function handle(XfyunTtsService $ttsService)
     {
         try {
-            $lang = ['zh', 'en'];
-            foreach ($lang as $value) {
-                $nameField = "{$value}_name";
-                $pathField = "{$value}_audio_path";
+            DB::transaction(function () use ($ttsService) {
+                $lang = ['zh', 'en'];
+                foreach ($lang as $value) {
+                    $nameField = "{$value}_name";
+                    $pathField = "{$value}_audio_path";
 
-                $result = $ttsService->toSpeech($this->card->$nameField, $this->business);
+                    // 删除原音频文件
+                    if ($originalPath = $this->card->$pathField) {
+                        Storage::disk('upload')->delete($originalPath);
+                    }
 
-                $path = "audios/" . Str::random(40) . ".mp3";
-                Storage::disk('upload')->put($path, $result['data']['audio']);
+                    $result = $ttsService->toSpeech($this->card->$nameField, $this->business);
 
-                $this->card->$pathField = $path;
-                $this->card->save();
-            }
+                    $path = "audios/" . Str::random(40) . ".mp3";
+                    Storage::disk('upload')->put($path, $result['data']['audio']);
+
+                    $this->card->$pathField = $path;
+                    $this->card->save();
+                }
+
+            });
         } catch (\Exception $e) {
             abort(500, $e->getMessage() ?? '语音合成失败');
         }

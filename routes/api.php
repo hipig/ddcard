@@ -67,6 +67,7 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
             Route::post('learn/{card}', [Api\UserLearnRecordsController::class, 'store'])->name('learn.store');
             Route::delete('learn/{card}', [Api\UserLearnRecordsController::class, 'destroy'])->name('learn.destroy');
 
+            // 收藏记录
             Route::post('collect/{card}', [Api\UserCollectRecordsController::class, 'store'])->name('collect.store');
             Route::delete('collect/{card}', [Api\UserCollectRecordsController::class, 'destroy'])->name('collect.destroy');
 

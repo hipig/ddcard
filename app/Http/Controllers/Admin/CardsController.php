@@ -9,10 +9,7 @@ use App\Jobs\GenerateAudio;
 use App\ModelFilters\Admin\CardFilter;
 use App\Models\Card;
 use App\Models\CardGroup;
-use App\Services\XfyunTtsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class CardsController extends Controller
 {
@@ -83,7 +80,7 @@ class CardsController extends Controller
         return back()->with('success', '删除卡片成功！');
     }
 
-    public function generateAudio(GenerateAudioRequest $request, Card $card, XfyunTtsService $ttsService)
+    public function generateAudio(GenerateAudioRequest $request, Card $card)
     {
         dispatch(new GenerateAudio($card, $request->only([
             'vcn',
