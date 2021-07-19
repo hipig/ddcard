@@ -16,7 +16,7 @@ class UserUnlockRecordsController extends Controller
     {
         $user = Auth::user();
 
-        if (!$group->validateUnlockLimit($user)) {
+        if (!$user->validateUnlockLimit()) {
             throw new AccessDeniedHttpException('超过当日解锁次数');
         }
 

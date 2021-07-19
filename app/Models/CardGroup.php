@@ -92,24 +92,12 @@ class CardGroup extends Model
             ->exists();
     }
 
-    public function validateUnlockLimit($user = null)
-    {
-        $user = $user ?? Auth::user();
-
-        $count = $this->unlockRecords()
-            ->where('user_id', $user->id)
-            ->whereDate('created_at', now()->format('Y-m-d'))
-            ->count();
-
-        return $count <= app(GeneralSettings::class)->daily_unlock_times;
-    }
-
     public function getCoverUrlAttribute()
     {
         $cover = $this->attributes['cover'];
         if (!$cover) {
             $firstCard = $this->cards()->status()->orderIndex()->latest()->first();
-            return $firstCard->cover_url;
+            return $firstCard->cover_url ?? '';
         }
         if(Str::startsWith($cover,['http://','https://'])){
             return $cover;

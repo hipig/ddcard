@@ -13,7 +13,7 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedback = Auth::user()->feedback()->with('replies')->oldest()->get();
+        $feedback = Auth::user()->feedback()->with('replies', 'user')->oldest()->get();
 
         return FeedbackResource::collection($feedback);
     }

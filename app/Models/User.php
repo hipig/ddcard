@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Settings\GeneralSettings;
 use Carbon\Carbon;
 use DateTimeInterface;
 use EloquentFilter\Filterable;
@@ -95,6 +96,15 @@ class User extends Authenticatable implements JWTSubject
 
         $this->attributes['vip_expired_at'] = $endAt;
         $this->save();
+    }
+
+    public function validateUnlockLimit()
+    {
+        $count = $this->unlockRecords()
+            ->whereDate('created_at', now()->format('Y-m-d'))
+            ->count();
+
+        return $count < app(GeneralSettings::class)->daily_unlock_times;
     }
 
     public function getIsVipAttribute()
