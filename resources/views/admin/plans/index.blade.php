@@ -76,7 +76,7 @@
                   <span class="text-gray-500">{{ $plan->created_at }}</span>
                 </td>
                 <td class="py-3 px-6 text-center">
-                  <a href="#" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+                  <a href="{{ route('admin.records.subscription', ['plan_id' => $plan->id]) }}" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
                     <x-heroicon-s-bookmark-alt  class="w-4 h-4"/>
                     <span>订阅记录</span>
                   </a>

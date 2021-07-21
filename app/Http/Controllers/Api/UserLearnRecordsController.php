@@ -20,7 +20,7 @@ class UserLearnRecordsController extends Controller
             ->status()
             ->orderBy('is_lock')
             ->orderIndex()
-            ->latest()
+            ->oldest()
             ->get();
 
         return CardGroupLearnResource::collection($groups);

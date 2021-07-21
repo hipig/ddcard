@@ -16,7 +16,7 @@ class CardGroupsController extends Controller
             ->status()
             ->orderBy('is_lock')
             ->orderIndex()
-            ->latest()
+            ->oldest()
             ->get();
 
         return CardGroupResource::collection($cardGroups);
