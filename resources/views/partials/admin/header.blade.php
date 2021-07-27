@@ -127,7 +127,7 @@
           <x-dropdown.menu>
             <div class="p-2 space-y-1">
               <x-dropdown.item label="个人资料" icon="heroicon-s-user-circle" href="{{ route('admin.profile') }}"></x-dropdown.item>
-              <x-dropdown.item label="系统设置" icon="heroicon-s-cog"></x-dropdown.item>
+              <x-dropdown.item label="系统设置" icon="heroicon-s-cog" href="{{ route('admin.settings.edit.general') }}"></x-dropdown.item>
             </div>
             <div class="p-2 space-y-1">
               <x-dropdown.item label="退出登录" icon="heroicon-s-lock-closed" x-on:click="$refs['logout-form'].submit()"></x-dropdown.item>

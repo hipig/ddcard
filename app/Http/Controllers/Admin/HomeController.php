@@ -7,16 +7,18 @@ use App\Http\Requests\Admin\ProfileRequest;
 use App\Models\Card;
 use App\Models\CardGroup;
 use App\Models\User;
+use App\Models\UserSubscriptionRecord;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
     public function dashboard()
     {
         $counts = [
-            'income' => number_format(0, 2),
+            'income' => number_format(UserSubscriptionRecord::query()->whereDate('created_at', now()->format('Y-m-d'))->whereNotNull('paid_at')->sum('amount'), 2),
             'user' => User::query()->whereDate('created_at', now()->format('Y-m-d'))->count(),
             'group' => CardGroup::query()->count(),
             'card' => Card::query()->count(),
@@ -35,8 +37,8 @@ class HomeController extends Controller
         $user = Auth::user();
         $user->fill($request->only('name'));
 
-        if ($password = $request->input('passowrd')) {
-            $user->password = $password;
+        if ($request->has('password')) {
+            $user->password = $request->input('password');
         }
         $user->save();
 
