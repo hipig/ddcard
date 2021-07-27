@@ -23,7 +23,10 @@ class HomeController extends Controller
             'group' => CardGroup::query()->count(),
             'card' => Card::query()->count(),
         ];
-        return view('admin.home.dashboard', compact('counts'));
+
+        $latestUsers = User::query()->withCount('onlineRecords')->latest()->limit(10)->get();
+
+        return view('admin.home.dashboard', compact('counts', 'latestUsers'));
     }
 
     public function showProfileForm()

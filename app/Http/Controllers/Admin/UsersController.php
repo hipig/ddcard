@@ -12,7 +12,7 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::filter($request->all(), UserFilter::class)->latest()->paginate();
+        $users = User::filter($request->all(), UserFilter::class)->withCount('onlineRecords')->latest()->paginate();
 
         return view('admin.users.index', compact('users'));
     }

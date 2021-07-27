@@ -13,6 +13,15 @@
   <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
     <div class="py-4 px-5 lg:px-6 flex-grow w-full">
       <form action="{{ route('admin.feedback.index') }}" method="get" class="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:space-x-4">
+        <div class="flex items-center space-x-1">
+          <label for="user_id" class="flex-shrink-0 text-sm">用户：</label>
+          <select id="user_id" name="user_id" class="w-28 block border border-gray-200 rounded px-3 py-2 leading-5 text-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            <option value="" {{ is_null(request()->user_id) ? 'selected' : '' }}>请选择</option>
+            @foreach($filterUsers as $user)
+              <option value="{{ $user->id }}" {{ request()->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="space-x-2">
           <button type="submit" class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-4 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
             <span>搜索</span>
@@ -73,7 +82,7 @@
             @endforeach
           @else
             <tr class="border-t border-gray-100">
-              <td class="py-6 px-6 text-center text-gray-500" colspan="4">暂无数据。</td>
+              <td class="py-6 px-6 text-center text-gray-500" colspan="5">暂无数据。</td>
             </tr>
           @endif
           </tbody>
@@ -84,7 +93,7 @@
       </div>
     </div>
   </div>
-  <x-dialog.list title="回复列表"></x-dialog.list>
+  <x-dialog.list title="回复列表" max-width="max-w-2xl"></x-dialog.list>
   <x-dialog.form title="添加回复">
     <div class="space-y-4">
       <div class="space-y-1">

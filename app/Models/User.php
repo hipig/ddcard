@@ -72,6 +72,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserUnlockRecord::class, 'user_id');
     }
 
+    public function onlineRecords()
+    {
+        return $this->hasMany(UserOnlineRecord::class, 'user_id');
+    }
+
     public function feedback()
     {
         return $this->hasMany(Feedback::class, 'user_id');

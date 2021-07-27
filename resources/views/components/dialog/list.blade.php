@@ -12,7 +12,7 @@
     class="z-50 fixed inset-0 overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-75 p-4 lg:p-8"
   >
     <div
-      class="flex flex-col rounded shadow-sm bg-white overflow-hidden w-full max-w-xl mx-auto"
+      class="flex flex-col rounded shadow-sm bg-white overflow-hidden w-full mx-auto {{ $maxWidth ?? 'max-w-xl' }}"
       x-show="open"
       x-transition:enter="transition ease-out duration-200"
       x-transition:enter-start="transform opacity-0 scale-125"

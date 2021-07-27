@@ -15,6 +15,15 @@
     <div class="py-4 px-5 lg:px-6 flex-grow w-full">
       <form action="{{ route('admin.records.subscription') }}" method="get" class="space-y-3 sm:space-y-0 sm:flex sm:items-center sm:space-x-4">
         <div class="flex items-center space-x-1">
+          <label for="user_id" class="flex-shrink-0 text-sm">用户：</label>
+          <select id="user_id" name="user_id" class="w-28 block border border-gray-200 rounded px-3 py-2 leading-5 text-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            <option value="" {{ is_null(request()->user_id) ? 'selected' : '' }}>请选择</option>
+            @foreach($filterUsers as $user)
+              <option value="{{ $user->id }}" {{ request()->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="flex items-center space-x-1">
           <label for="plan_id" class="flex-shrink-0 text-sm">方案：</label>
           <select id="plan_id" name="plan_id" class="w-28 block border border-gray-200 rounded px-3 py-2 leading-5 text-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
             <option value="" {{ is_null(request()->plan_id) ? 'selected' : '' }}>请选择</option>
@@ -89,7 +98,7 @@
             @endforeach
           @else
             <tr class="border-t border-gray-100">
-              <td class="py-6 px-6 text-center text-gray-500" colspan="4">暂无数据。</td>
+              <td class="py-6 px-6 text-center text-gray-500" colspan="6">暂无数据。</td>
             </tr>
           @endif
           </tbody>

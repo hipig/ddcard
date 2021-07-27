@@ -88,7 +88,7 @@
             @endforeach
           @else
             <tr class="border-t border-gray-100">
-              <td class="py-6 px-6 text-center text-gray-500" colspan="5">暂无数据。</td>
+              <td class="py-6 px-6 text-center text-gray-500" colspan="6">暂无数据。</td>
             </tr>
           @endif
           </tbody>
