@@ -40,18 +40,18 @@ class CardGroup extends Model
     const COLOR_INDIGO = 'indigo';
     const COLOR_PURPLE = 'purple';
     const COLOR_PINK = 'pink';
-    public static $colorMap = [
-        self::COLOR_GRAY => '灰色',
-        self::COLOR_RED => '红色',
-        self::COLOR_YELLOW => '黄色',
-        self::COLOR_LIME => '绿黄色',
-        self::COLOR_GREEN => '绿色',
-        self::COLOR_BLUE => '蓝色',
-        self::COLOR_ORANGE => '橘色',
-        self::COLOR_TEAL => '青色',
-        self::COLOR_INDIGO => '靛蓝色',
-        self::COLOR_PURPLE => '紫色',
-        self::COLOR_PINK => '粉色',
+    public static $bgColorMap = [
+        self::COLOR_GRAY => 'bg-gray-600',
+        self::COLOR_RED => 'bg-red-600',
+        self::COLOR_YELLOW => 'bg-yellow-600',
+        self::COLOR_LIME => 'bg-lime-600',
+        self::COLOR_GREEN => 'bg-green-600',
+        self::COLOR_BLUE => 'bg-blue-600',
+        self::COLOR_ORANGE => 'bg-orange-600',
+        self::COLOR_TEAL => 'bg-teal-600',
+        self::COLOR_INDIGO => 'bg-indigo-600',
+        self::COLOR_PURPLE => 'bg-purple-600',
+        self::COLOR_PINK => 'bg-pink-600',
     ];
 
     protected $fillable = [

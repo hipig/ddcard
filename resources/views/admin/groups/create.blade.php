@@ -37,25 +37,10 @@
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="cover" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">样式</label>
           <div class="w-full md:w-3/5 space-x-6">
-            @php
-              $colorMap = [
-                    'gray' => 'bg-gray-600',
-                    'red' => 'bg-red-600',
-                    'yellow' => 'bg-yellow-600',
-                    'lime' => 'bg-lime-600',
-                    'green' => 'bg-green-600',
-                    'blue' => 'bg-blue-600',
-                    'orange' => 'bg-orange-600',
-                    'teal' => 'bg-teal-600',
-                    'indigo' => 'bg-indigo-600',
-                    'purple' => 'bg-purple-600',
-                    'pink' => 'bg-pink-600',
-                ];
-            @endphp
-            @foreach(\App\Models\CardGroup::$colorMap as $key => $color)
+            @foreach(\App\Models\CardGroup::$bgColorMap as $key => $color)
               <label class="inline-flex items-center space-x-2">
                 <input id="color" type="radio" name="color" value="{{ $key }}" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('color', \App\Models\CardGroup::COLOR_GRAY) == $key ? 'checked' : '' }}>
-                <span class="rounded w-5 h-5 {{ $colorMap[$key] }}" title="{{ $color }}"></span>
+                <span class="rounded w-5 h-5 {{ $color }}" title="{{ $key }}"></span>
               </label>
             @endforeach
           </div>

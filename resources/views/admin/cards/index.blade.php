@@ -60,21 +60,6 @@
 
           <tbody>
           @if($cards->isNotEmpty())
-            @php
-              $colorMap = [
-                    'gray' => 'bg-gray-600',
-                    'red' => 'bg-red-600',
-                    'yellow' => 'bg-yellow-600',
-                    'lime' => 'bg-lime-600',
-                    'green' => 'bg-green-600',
-                    'blue' => 'bg-blue-600',
-                    'orange' => 'bg-orange-600',
-                    'teal' => 'bg-teal-600',
-                    'indigo' => 'bg-indigo-600',
-                    'purple' => 'bg-purple-600',
-                    'pink' => 'bg-pink-600',
-                ];
-            @endphp
             @foreach($cards as $card)
               <tr class="border-t border-gray-100">
                 <td class="py-3 px-6">
@@ -89,7 +74,7 @@
                   </div>
                 </td>
                 <td class="py-3 px-6 text-center">
-                  <span class="inline-block rounded w-5 h-5 {{ $colorMap[$card->color] }}" title="{{ $card->color }}"></span>
+                  <span class="inline-block rounded w-5 h-5 {{ \App\Models\Card::$bgColorMap[$card->color] }}" title="{{ $card->color }}"></span>
                 </td>
                 <td class="py-3 px-6 text-center">
                   <a href="{{ route('admin.groups.edit', $card->group) }}" class="text-base text-indigo-600 hover:text-indigo-700 hover:underline">{{ $card->group->zh_name }}</a>
