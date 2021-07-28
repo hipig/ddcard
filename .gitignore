@@ -1,5 +1,7 @@
 /.idea
 /node_modules
+/public/css
+/public/js
 /public/hot
 /public/storage
 /public/uploads/audios
