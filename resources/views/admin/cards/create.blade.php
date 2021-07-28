@@ -63,6 +63,7 @@
                     'gray' => 'bg-gray-600',
                     'red' => 'bg-red-600',
                     'yellow' => 'bg-yellow-600',
+                    'lime' => 'bg-lime-600',
                     'green' => 'bg-green-600',
                     'blue' => 'bg-blue-600',
                     'orange' => 'bg-orange-600',
