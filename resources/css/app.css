@@ -11,3 +11,7 @@
   opacity: .5;
   left: 4px;
 }
+
+[x-cloak] {
+  display: none;
+}

@@ -29,7 +29,7 @@ class CardGroupsController extends Controller
         }
 
         $group->load(['cards' => function($query) {
-            $query->status()->orderIndex()->latest();
+            $query->status()->orderIndex()->oldest();
         }, 'cards.collectRecords', 'cards.learnRecords']);
 
         return CardGroupResource::make($group);

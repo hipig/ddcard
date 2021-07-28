@@ -10,6 +10,7 @@
     x-transition:leave-start="transform opacity-100"
     x-transition:leave-end="transform opacity-0"
     class="z-50 fixed inset-0 overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-75 p-4 lg:p-8"
+    x-cloak
   >
     <div
       class="flex flex-col rounded shadow-sm bg-white overflow-hidden w-full mx-auto {{ $maxWidth ?? 'max-w-xl' }}"

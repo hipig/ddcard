@@ -27,3 +27,7 @@ mix.js('resources/vendor/quill/quill.js', 'public/vendor/quill')
   .postCss('resources/vendor/quill/quill.css', 'public/vendor/quill', [
     require("tailwindcss"),
   ]);
+
+if (mix.inProduction()) {
+  mix.version();
+}

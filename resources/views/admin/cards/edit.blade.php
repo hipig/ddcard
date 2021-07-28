@@ -42,12 +42,12 @@
           <input type="text" id="zh_spell" name="zh_spell" value="{{ old('zh_spell', $card->zh_spell) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入中文发音" />
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
-          <label for="en_spell" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">美式发音</label>
-          <input type="text" id="en_spell" name="en_spell" value="{{ old('en_spell', $card->en_spell) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入美式发音" />
-        </div>
-        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="uk_spell" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">英式发音</label>
           <input type="text" id="uk_spell" name="uk_spell" value="{{ old('uk_spell', $card->uk_spell) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入英式发音" />
+        </div>
+        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
+          <label for="en_spell" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">美式发音</label>
+          <input type="text" id="en_spell" name="en_spell" value="{{ old('en_spell', $card->en_spell) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入美式发音" />
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="cover" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">封面</label>
