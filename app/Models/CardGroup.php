@@ -32,6 +32,7 @@ class CardGroup extends Model
     const COLOR_GRAY = 'gray';
     const COLOR_RED = 'red';
     const COLOR_YELLOW = 'yellow';
+    const COLOR_LIME = 'lime';
     const COLOR_GREEN = 'green';
     const COLOR_BLUE = 'blue';
     const COLOR_ORANGE = 'orange';
@@ -43,6 +44,7 @@ class CardGroup extends Model
         self::COLOR_GRAY => '灰色',
         self::COLOR_RED => '红色',
         self::COLOR_YELLOW => '黄色',
+        self::COLOR_LIME => '绿黄色',
         self::COLOR_GREEN => '绿色',
         self::COLOR_BLUE => '蓝色',
         self::COLOR_ORANGE => '橘色',
@@ -96,7 +98,7 @@ class CardGroup extends Model
     {
         $cover = $this->attributes['cover'];
         if (!$cover) {
-            $firstCard = $this->cards()->status()->orderIndex()->latest()->first();
+            $firstCard = $this->cards()->status()->orderIndex()->oldest()->first();
             return $firstCard->cover_url ?? '';
         }
         if(Str::startsWith($cover,['http://','https://'])){

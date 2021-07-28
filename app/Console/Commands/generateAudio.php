@@ -12,7 +12,7 @@ class generateAudio extends Command
      *
      * @var string
      */
-    protected $signature = 'generate:audio {vcn=xiaoyan}';
+    protected $signature = 'generate:audio {vcn=xiaoyan} {speed=30} {volume=80}';
 
     /**
      * The console command description.
@@ -43,6 +43,8 @@ class generateAudio extends Command
         foreach ($cards as $card) {
             dispatch(new \App\Jobs\GenerateAudio($card, [
                 'vcn' => $this->argument('vcn'),
+                'speed' => $this->argument('speed'),
+                'volume' => $this->argument('volume'),
             ]));
         }
 
