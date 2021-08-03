@@ -15,7 +15,7 @@
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="username" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">用户名</label>
-          <input type="text" id="username" name="username" value="{{ old('username', $user->username) }}" class="block border border-gray-200 bg-gray-100 rounded px-3 py-2 leading-6 w-full md:w-2/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入用户名" />
+          <input type="text" id="username" name="username" value="{{ old('username', $user->username) }}" class="block border border-gray-200 bg-gray-100 rounded px-3 py-2 leading-6 w-full md:w-2/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入用户名" readonly />
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="name" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">昵称</label>

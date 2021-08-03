@@ -104,6 +104,10 @@
                     <span class="text-gray-500">{{ $user->created_at }}</span>
                   </td>
                   <td class="py-3 px-6 text-center">
+                    <button x-on:click="$dispatch('submit-dialog-form', { open: true, action: `{{ route('admin.users.renew', $user) }}` })" type="button" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
+                      <x-heroicon-s-gift  class="w-4 h-4"/>
+                      <span>开通会员</span>
+                    </button>
                     <a href="{{ route('admin.users.edit', $user) }}" class="inline-flex justify-center items-center space-x-1 border font-semibold focus:outline-none px-2 py-1 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
                       <x-heroicon-s-pencil  class="w-4 h-4"/>
                       <span>编辑</span>
@@ -124,4 +128,17 @@
       </div>
     </div>
   </div>
+  <x-dialog.form title="开通会员">
+    <div class="space-y-4">
+      <div class="space-y-1">
+        <label class="font-medium" for="plan_id">会员方案</label>
+        <select id="plan_id" name="plan_id" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+          <option value="">请选择</option>
+          @foreach($plans as $plan)
+            <option value="{{ $plan->id }}" {{ old('plan_id') == $plan->id ? 'selected' : '' }}>{{ $plan->name }}</option>
+          @endforeach
+        </select>
+      </div>
+    </div>
+  </x-dialog.form>
 @endsection

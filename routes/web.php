@@ -40,6 +40,7 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         Route::get('/', [Admin\HomeController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('users', Admin\UsersController::class)->except(['create', 'store', 'show']);
+        Route::post('users/{user}/renew', [Admin\UsersController::class, 'renew'])->name('users.renew');
         Route::resource('plans', Admin\PlansController::class)->except(['show']);
         Route::resource('card-groups', Admin\CardGroupsController::class)->names('groups')->except(['show'])->parameters([
             'card-groups' => 'group'
