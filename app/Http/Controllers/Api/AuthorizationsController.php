@@ -40,6 +40,12 @@ class AuthorizationsController extends Controller
         return $this->respondWithToken($token)->setStatusCode(201);
     }
 
+    public function destroy()
+    {
+        auth()->logout();
+        return response(null, 204);
+    }
+
     protected function respondWithToken($token)
     {
         return response()->json([

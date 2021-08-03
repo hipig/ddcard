@@ -14,7 +14,7 @@ class CardsController extends Controller
         $cards = $group->cards()
             ->status()
             ->orderIndex()
-            ->latest()
+            ->oldest()
             ->get();
 
         return CardPreviewResource::collection($cards);

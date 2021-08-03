@@ -19,6 +19,8 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
 
     // 小程序登录
     Route::post('weapp/authorizations', [Api\AuthorizationsController::class, 'weappStore'])->name('weapp.authorizations.store');
+    // 退出登录
+    Route::delete('authorizations', [Api\AuthorizationsController::class, 'destroy'])->name('authorizations.destroy');
 
     // 卡片分组
     Route::get('card-groups', [Api\CardGroupsController::class, 'index'])->name('cardGroups.index');
