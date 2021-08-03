@@ -89,7 +89,7 @@
                         $labelText = '已开通';
                       }
 
-                      if ($expiredAt === \App\Models\Plan::INFINITE_TIME) {
+                      if ($expiredAt == \App\Models\Plan::INFINITE_TIME) {
                         $labelClass = 'text-yellow-800 bg-yellow-100';
                         $labelText = '永久会员';
                       }
