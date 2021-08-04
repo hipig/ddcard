@@ -82,12 +82,12 @@ class CardsController extends Controller
 
     public function generateAudio(GenerateAudioRequest $request, Card $card)
     {
-        dispatch(new GenerateAudio($card, $request->only([
-            'vcn',
-            'speed',
-            'volume',
-            'pitch'
-        ])));
+        dispatch(new GenerateAudio($card, [
+            'vcn' => $request->input('vcn'),
+            'speed' => (int)$request->input('speed'),
+            'volume' => (int)$request->input('volume'),
+            'pitch' => (int)$request->input('volume'),
+        ]));
 
         return back()->with('success', '生成音频任务提交成功，请稍后！');
     }
