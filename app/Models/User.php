@@ -42,14 +42,9 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'vip_expired_at' => 'datetime',
+    protected $dates = [
+        'email_verified_at',
+        'vip_expired_at'
     ];
 
     public function collectRecords()
@@ -119,7 +114,7 @@ class User extends Authenticatable implements JWTSubject
             $isVip = 1;
         }
 
-        if ($this->getAttribute('vip_expired_at') === Plan::INFINITE_TIME) {
+        if ($this->getAttribute('vip_expired_at') == Plan::INFINITE_TIME) {
             $isVip = 2;
         }
 
