@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Exceptions\GatewayErrorException;
+use Illuminate\Support\Facades\Log;
 use WebSocket\Client;
 
 class XfyunTtsService

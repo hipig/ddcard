@@ -43,8 +43,8 @@ class generateAudio extends Command
         foreach ($cards as $card) {
             dispatch(new \App\Jobs\GenerateAudio($card, [
                 'vcn' => $this->argument('vcn'),
-                'speed' => $this->argument('speed'),
-                'volume' => $this->argument('volume'),
+                'speed' => (int)$this->argument('speed'),
+                'volume' => (int)$this->argument('volume'),
             ]));
         }
 
