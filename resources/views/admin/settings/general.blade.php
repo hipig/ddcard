@@ -35,6 +35,19 @@
           @method('put')
         </div>
         <div class="space-y-1 md:space-y-0 md:flex md:items-center">
+          <label class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">会员显示</label>
+          <div class="w-full md:w-3/5 space-x-6">
+              <label class="inline-flex items-center space-x-2">
+                <input id="vip_show_1" type="radio" name="vip_show" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('vip_show', $settings->vip_show) == 1 ? 'checked' : '' }}>
+                <span>启用</span>
+              </label>
+              <label class="inline-flex items-center space-x-2">
+                <input id="vip_show_-1" type="radio" name="vip_show" value="-1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" {{ old('vip_show', $settings->vip_show) == -1 ? 'checked' : '' }}>
+                <span>禁用</span>
+              </label>
+          </div>
+        </div>
+        <div class="space-y-1 md:space-y-0 md:flex md:items-center">
           <label for="daily_unlock_times" class="font-semibold md:w-1/5 flex-none md:mr-6 text-right">每日可解锁次数</label>
           <input type="number" id="daily_unlock_times" name="daily_unlock_times" value="{{ old('daily_unlock_times', $settings->daily_unlock_times) }}" class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full md:w-3/5 focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="请输入每日可解锁次数" />
         </div>

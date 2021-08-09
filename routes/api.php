@@ -33,18 +33,20 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
     // 支付回调
     Route::post('payment/wechat/notify', [Api\PaymentController::class, 'wechatNotify'])->name('payment.wechat.notify');
 
-    // 校验 vip 状态
-    Route::get('validations/user-is-vip', [Api\ValidationsController::class, 'userIsVip'])->name('validations.userIsVip');
     // 校验卡组能否学习
     Route::get('validations/group-can-learn/{group}', [Api\ValidationsController::class, 'groupCanLearn'])->name('validations.groupCanLearn');
 
     // 关于我们
     Route::get('abouts/{about:key}', [Api\AboutsController::class, 'show'])->name('abouts.show');
 
+    // 基础设置
+    Route::get('settings/general', [Api\SettingsController::class, 'general'])->name('settings.general');
+
     // 不需要登录的记录
     Route::prefix('records')->as('records.')->group(function () {
 
         // 在线记录
+        Route::get('online/cumulative', [Api\UserOnlineRecordsController::class, 'cumulativeTimes'])->name('online.cumulativeTimes');
         Route::post('online', [Api\UserOnlineRecordsController::class, 'store'])->name('online.store');
         Route::put('online/{record}', [Api\UserOnlineRecordsController::class, 'update'])->name('online.update');
 
@@ -56,9 +58,7 @@ Route::prefix('v1')->as('api.v1.')->middleware('guard:api')->group(function () {
 
     });
 
-
-
-    Route::middleware('refresh.token')->group(function () {
+    Route::middleware('auth.renew')->group(function () {
 
         // 个人资料
         Route::get('me', [Api\UsersController::class, 'me'])->name('me');

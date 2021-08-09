@@ -33,9 +33,4 @@ class UserOnlineRecord extends Model
     {
         return $this->hasMany(UserOnlineRecordItem::class, 'record_id');
     }
-
-    public function getCumulativeTimesAttribute($key)
-    {
-        return Auth::check() ? static::query()->where('user_id', Auth::id())->count() : 1;
-    }
 }

@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Log;
 
 class UserOnlineRecordsController extends Controller
 {
+    public function cumulativeTimes(Request $request)
+    {
+        $cumulativeTimes = 1;
+        if (Auth::check()) {
+            $cumulativeTimes = UserOnlineRecord::query()->where('user_id', Auth::id())->count();
+        }
+
+        return response()->json(['cumulative_times' => $cumulativeTimes]);
+    }
+
+
     public function store(Request $request)
     {
         $method = Auth::check() ? 'firstOrCreate' : 'create';
@@ -20,7 +31,7 @@ class UserOnlineRecordsController extends Controller
             'date' => now()->format('Y-m-d')
         ]);
 
-        return UserOnlineRecordResource::make($record->append('cumulative_times'));
+        return UserOnlineRecordResource::make($record);
     }
 
     public function update(Request $request, UserOnlineRecord $record)

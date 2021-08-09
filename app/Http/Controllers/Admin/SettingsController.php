@@ -18,6 +18,7 @@ class SettingsController extends Controller
     {
         $settings->fill($request->only([
             'daily_unlock_times',
+            'vip_show',
         ]));
         $settings->save();
 
