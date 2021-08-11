@@ -12,7 +12,7 @@ class generateAudio extends Command
      *
      * @var string
      */
-    protected $signature = 'generate:audio {vcn=xiaoyan} {speed=30} {volume=80}';
+    protected $signature = 'generate:audio {vcn=xiaoyan} {speed=30} {volume=80} {--init}';
 
     /**
      * The console command description.
@@ -38,6 +38,7 @@ class generateAudio extends Command
     public function handle()
     {
         $this->info('生成音频开始');
+        $isInit = $this->option('init');
         $cards = Card::query()->status()->get();
 
         foreach ($cards as $card) {
@@ -45,7 +46,7 @@ class generateAudio extends Command
                 'vcn' => $this->argument('vcn'),
                 'speed' => (int)$this->argument('speed'),
                 'volume' => (int)$this->argument('volume'),
-            ]));
+            ], $isInit));
         }
 
         $this->info('生成音频结束');

@@ -31,7 +31,7 @@ class CardsController extends Controller
 
     public function store(CardRequest $request)
     {
-        Card::create($request->only([
+        $card = Card::create($request->only([
             'group_id',
             'zh_name',
             'en_name',
@@ -43,6 +43,8 @@ class CardsController extends Controller
             'status',
             'index',
         ]));
+
+        dispatch(new GenerateAudio($card));
 
         return redirect()->route('admin.cards.index')->with('success', '添加卡片成功！');
     }
@@ -86,7 +88,7 @@ class CardsController extends Controller
             'vcn' => $request->input('vcn'),
             'speed' => (int)$request->input('speed'),
             'volume' => (int)$request->input('volume'),
-            'pitch' => (int)$request->input('volume'),
+            'pitch' => (int)$request->input('pitch'),
         ]));
 
         return back()->with('success', '生成音频任务提交成功，请稍后！');

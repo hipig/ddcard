@@ -20,16 +20,18 @@ class GenerateAudio implements ShouldQueue
 
     protected $card;
     protected $business;
+    protected $isInit;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Card $card, array $business = [])
+    public function __construct(Card $card, array $business = [], $isInit = false)
     {
         $this->card = $card;
         $this->business = $business;
+        $this->isInit = $isInit;
     }
 
     /**
@@ -46,9 +48,12 @@ class GenerateAudio implements ShouldQueue
                     $nameField = "{$value}_name";
                     $pathField = "{$value}_audio_path";
 
-                    // 删除原音频文件
                     if ($originalPath = $this->card->$pathField) {
-                        Storage::disk('upload')->delete($originalPath);
+                        if ($this->isInit) {
+                            Storage::disk('upload')->delete($originalPath);
+                        } else {
+                            return true;
+                        }
                     }
 
                     $result = $ttsService->toSpeech($this->card->$nameField, $this->business);
