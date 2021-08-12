@@ -18,7 +18,7 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'avatar' => $this->avatar,
             'is_vip' => $this->is_vip,
-            'vip_expired_at' => $this->vip_expired_at->format('Y-m-d H:i:s'),
+            'vip_expired_at' => $this->vip_expired_at ? $this->vip_expired_at->format('Y-m-d H:i:s') : null,
         ];
     }
 }
