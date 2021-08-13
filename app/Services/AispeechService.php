@@ -8,7 +8,7 @@ use App\Exceptions\GatewayErrorException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-class AiSpeechService
+class AispeechService
 {
     const URL = "https://tts.duiopen.com/runtime/v2/synthesize?productId=%s&voiceId=%s&apikey=%s";
 

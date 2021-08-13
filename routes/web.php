@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers;
 use App\Http\Controllers\Admin;
-use App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,11 +74,4 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         });
     });
 
-});
-
-Route::get('test', function () {
-   $service = new \App\Services\AiSpeechService();
-   $service->to('苹果', [
-       'voiceId' => 'qianranfa'
-   ]);
 });

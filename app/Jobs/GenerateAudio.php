@@ -3,8 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\Card;
-use App\Services\AiSpeechService;
-use App\Services\XfyunTtsService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;

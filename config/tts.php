@@ -21,7 +21,7 @@ return [
 
         // 思必驰
         'aispeech' => [
-            'driver' => \App\Services\AiSpeechService::class,
+            'driver' => \App\Services\AispeechService::class,
             'product_id' => env('AISPEECH_TTS_PRODUCT_ID'),
             'api_key' => env('AISPEECH_TTS_API_KEY'),
             'params' => [
