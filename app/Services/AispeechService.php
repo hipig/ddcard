@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Exceptions\GatewayErrorException;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class AispeechService
@@ -38,6 +39,8 @@ class AispeechService
                 'volume' => $params['volume'],
             ]
         ];
+
+        Log::info('aispeech request: ', [$endpointUrl, compact('context', 'request')]);
 
         $response = Http::post($endpointUrl, compact('context', 'request'));
 
