@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Card;
+use App\Services\AiSpeechService;
 use App\Services\XfyunTtsService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -19,7 +20,6 @@ class GenerateAudio implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $card;
-    protected $business;
     protected $isInit;
 
     /**
@@ -27,10 +27,9 @@ class GenerateAudio implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Card $card, array $business = [], $isInit = false)
+    public function __construct(Card $card, $isInit = false)
     {
         $this->card = $card;
-        $this->business = $business;
         $this->isInit = $isInit;
     }
 
@@ -39,8 +38,12 @@ class GenerateAudio implements ShouldQueue
      *
      * @return void
      */
-    public function handle(XfyunTtsService $ttsService)
+    public function handle()
     {
+        $name = \ucfirst(config('tts.default'));
+        $gateway = "App\\Services\\{$name}Service";
+        $ttsService = new $gateway();
+
         try {
             DB::transaction(function () use ($ttsService) {
                 $lang = ['zh', 'en'];
@@ -56,15 +59,16 @@ class GenerateAudio implements ShouldQueue
                         }
                     }
 
-                    $result = $ttsService->toSpeech($this->card->$nameField, $this->business);
+                    $result = $ttsService->toSpeech($this->card->$nameField);
 
                     $path = "audios/" . Str::random(40) . ".mp3";
-                    Storage::disk('upload')->put($path, $result['data']['audio']);
+                    Storage::disk('upload')->put($path, $result);
 
                     $this->card->$pathField = $path;
                     $this->card->save();
                 }
 
+                return true;
             });
         } catch (\Exception $e) {
             abort(500, $e->getMessage() ?? '语音合成失败');

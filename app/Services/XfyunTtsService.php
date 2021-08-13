@@ -16,9 +16,9 @@ class XfyunTtsService
 
     const SUCCESS_FLAG = 0;
 
-    public function toSpeech(string $text, array $business = [])
+    public function toSpeech(string $text)
     {
-        $config = config('services.xfyun');
+        $config = config('tts.gateways.xfyun');
 
         $date = gmstrftime("%a, %d %b %Y %T %Z", time());
 
@@ -34,14 +34,11 @@ class XfyunTtsService
             'app_id' => $config['app_id']
         ];
 
+
         $business = array_merge([
-            'speed' => 30,
-            'volume' => 80,
-            'pitch' => 50,
-            'vcn' => 'xiaoyan',
             'aue' => 'lame',
             'tte' => "UTF8"
-        ], $business);
+        ], $config['params']);
 
         if ($business['aue'] === 'lame') {
             $business['sfl'] = 1;
@@ -55,15 +52,16 @@ class XfyunTtsService
         $client = new Client($endpointUrl);
         $client->send(json_encode(compact('common', 'business', 'data')));
 
+        $return = '';
         while (true) {
             try {
                 $result = json_decode($client->receive(), true);
                 switch ($result['data']['status']) {
                     case 1:
-                        $result['data']['audio'] .= base64_decode($result['data']['audio']);
+                        $return .= base64_decode($result['data']['audio']);
                         break;
                     case 2:
-                        $result['data']['audio'] .= base64_decode($result['data']['audio']);
+                        $return .= base64_decode($result['data']['audio']);
                         break 2;
                 }
             } catch (\Exception $e) {
@@ -72,10 +70,10 @@ class XfyunTtsService
         }
 
         if ($result['code'] !== self::SUCCESS_FLAG) {
-            throw new GatewayErrorException($result->message, $result['code'], $result);
+            throw new GatewayErrorException($result->message, 500, $result);
         }
 
-        return $result;
+        return $return;
     }
 
     protected function generateSignature($date, $apiSecret)

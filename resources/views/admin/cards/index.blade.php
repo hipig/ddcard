@@ -142,26 +142,7 @@
     </div>
   </div>
   <x-dialog.form title="生成音频">
-    <div class="space-y-4">
-      <div class="space-y-1">
-        @php
-          $vcns = [
-            'xiaoyan' => '讯飞小燕',
-            'aisjiuxu' => '讯飞许久',
-            'aisxping' => '讯飞小萍',
-            'aisjinger' => '讯飞小婧',
-            'aisbabyxu' => '讯飞许小宝',
-          ];
-        @endphp
-        <label class="font-medium" for="vcn">发音人</label>
-        <select id="vcn" name="vcn" class="block border border-gray-200 rounded px-3 py-2 leading-5 text-sm w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-          <option value="">请选择</option>
-          @foreach($vcns as $key => $value)
-            <option value="{{ $key }}" {{ old('vcn') == $value ? 'selected' : '' }}>{{ $value }}</option>
-          @endforeach
-        </select>
-      </div>
-    </div>
+    <p class="text-gray-900 text-lg">是否重新生成音频？</p>
   </x-dialog.form>
   <x-dialog.confirm-delete>
     <p class="text-gray-600">是否删除该卡片？</p>

@@ -14,6 +14,7 @@
       x-on:click.away="open = false"
       role="menu"
       class="absolute right-0 origin-top-right mt-2 shadow-xl rounded z-1"
+      x-cloak
     >
       {{ $menu }}
     </div>

@@ -12,7 +12,7 @@ class generateAudio extends Command
      *
      * @var string
      */
-    protected $signature = 'generate:audio {vcn=xiaoyan} {speed=30} {volume=80} {--init}';
+    protected $signature = 'audio:generate {--init}';
 
     /**
      * The console command description.
@@ -41,12 +41,12 @@ class generateAudio extends Command
         $isInit = $this->option('init');
         $cards = Card::query()->status()->get();
 
-        foreach ($cards as $card) {
-            dispatch(new \App\Jobs\GenerateAudio($card, [
-                'vcn' => $this->argument('vcn'),
-                'speed' => (int)$this->argument('speed'),
-                'volume' => (int)$this->argument('volume'),
-            ], $isInit));
+        try {
+            foreach ($cards as $card) {
+                dispatch(new \App\Jobs\GenerateAudio($card, $isInit));
+            }
+        } catch (\Exception $e) {
+            $this->error(sprintf("%s(%s): %s", $e->getFile(), $e->getLine(), $e->getMessage()));
         }
 
         $this->info('生成音频结束');

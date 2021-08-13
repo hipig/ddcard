@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CardRequest;
-use App\Http\Requests\Admin\GenerateAudioRequest;
 use App\Jobs\GenerateAudio;
 use App\ModelFilters\Admin\CardFilter;
 use App\Models\Card;
@@ -82,14 +81,9 @@ class CardsController extends Controller
         return back()->with('success', '删除卡片成功！');
     }
 
-    public function generateAudio(GenerateAudioRequest $request, Card $card)
+    public function generateAudio(Card $card)
     {
-        dispatch(new GenerateAudio($card, [
-            'vcn' => $request->input('vcn'),
-            'speed' => (int)$request->input('speed'),
-            'volume' => (int)$request->input('volume'),
-            'pitch' => (int)$request->input('pitch'),
-        ]));
+        dispatch(new GenerateAudio($card, true));
 
         return back()->with('success', '生成音频任务提交成功，请稍后！');
     }

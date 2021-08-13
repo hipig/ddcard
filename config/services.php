@@ -30,11 +30,4 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    // 讯飞语音合成
-    'xfyun' => [
-        'app_id' => env('XFYUN_TTS_APP_ID'),
-        'api_key' => env('XFYUN_TTS_API_KEY'),
-        'api_secret' => env('XFYUN_TTS_API_SECRET'),
-    ]
-
 ];
