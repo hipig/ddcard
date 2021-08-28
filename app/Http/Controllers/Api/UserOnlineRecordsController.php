@@ -44,6 +44,8 @@ class UserOnlineRecordsController extends Controller
             'started_at' => $startedAt,
             'ended_at' => $endedAt,
         ]);
+        $record->user_id = Auth::id();
+        $record->save();
 
         return UserOnlineRecordResource::make($record);
     }
