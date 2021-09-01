@@ -7,6 +7,10 @@
 
 该项目包括了管理后台以及小程序接口
 
+暂时没有预览地址,后台地址为：域名/admin
+### 截图
+![截图](https://user-images.githubusercontent.com/24596908/131635955-abd0896e-e441-42f6-85fd-bc7f28e890ce.png)
+
 ### 环境说明
 
 | 语言    | 版本                 |
@@ -40,6 +44,9 @@ DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
 
+# 队列
+QUEUE_CONNECTION=
+
 # 小程序
 WECHAT_MINI_PROGRAM_APPID=
 WECHAT_MINI_PROGRAM_SECRET=
@@ -70,4 +77,7 @@ php artisan db:seed --class=AdminUserSeeder
 # 前端打包
 npm install
 npm run prod
+
+#队列运行
+php artisan queue:work
 ```
