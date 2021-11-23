@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\AppSettingComposer;
 use App\Http\ViewComposers\FilterUserComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +26,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['home'], AppSettingComposer::class);
         View::composer(['admin.records.*', 'admin.feedback.index'], FilterUserComposer::class);
     }
 }

@@ -39,6 +39,7 @@
       <x-sidebar.group label="系统">
         <x-sidebar.item label="系统设置" icon="heroicon-o-cog" :active="if_route_pattern('admin.settings.*')">
           <x-sidebar.subitem label="基础" href="{{ route('admin.settings.edit.general') }}" :active="if_route('admin.settings.edit.general')"></x-sidebar.subitem>
+          <x-sidebar.subitem label="站点" href="{{ route('admin.settings.edit.app') }}" :active="if_route('admin.settings.edit.app')"></x-sidebar.subitem>
         </x-sidebar.item>
 {{--        <x-sidebar.item label="管理员" icon="heroicon-o-shield-check"></x-sidebar.item>--}}
 {{--        <x-sidebar.item label="角色" icon="heroicon-o-lock-closed"></x-sidebar.item>--}}

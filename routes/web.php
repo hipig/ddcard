@@ -49,6 +49,9 @@ Route::prefix('admin')->as('admin.')->middleware('guard:admin')->group(function 
         Route::prefix('settings')->group(function () {
             Route::get('general', [Admin\SettingsController::class, 'editGeneral'])->name('settings.edit.general');
             Route::put('general', [Admin\SettingsController::class, 'updateGeneral'])->name('settings.update.general');
+
+            Route::get('app', [Admin\SettingsController::class, 'editApp'])->name('settings.edit.app');
+            Route::put('app', [Admin\SettingsController::class, 'updateApp'])->name('settings.update.app');
         });
 
         Route::prefix('records')->group(function () {
